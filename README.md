@@ -39,3 +39,10 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
 - Components that use ZUI can be expanded with Grasshopper zoom controls to add additional `||` lanes.
 - `Partition Branches` uses a branch-selection pattern in `P`; flat and grafted pattern inputs are both supported when they provide one decision per branch.
 - Host-side-effect tools such as file-open and Revit export workflows are still expected to remain script or workflow driven unless explicitly migrated later.
+
+## Documentation Site
+
+- A GitHub Pages-ready static docs site lives in `docs/`.
+- The landing page is `docs/index.html`.
+- The current site includes the project overview, implemented component families, framework structure, current interaction notes, and links back to the migration memo and README.
+- To publish it with GitHub Pages, set the repository Pages source to the `main` branch and the `/docs` folder.

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MutaliskGH Docs</title>
+  <meta
+    name="description"
+    content="Documentation site for MutaliskGH, a compiled Grasshopper plugin for migrating custom utility, tree, and text tools into a maintainable C# codebase.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <p class="eyebrow">Grasshopper Plugin Documentation</p>
+      <h1>MutaliskGH</h1>
+      <p class="hero-copy">
+        MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library
+        of utility components, tree tools, text tools, and workflow helpers into a maintainable C# plugin.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#implemented">Implemented Components</a>
+        <a class="button button-secondary" href="notion-migration-architecture.md">Migration Architecture</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="grid-section">
+        <article class="info-card">
+          <h2>Current Scope</h2>
+          <p>
+            The repo currently contains the shared plugin framework, a pure-logic core library,
+            automated tests, and the first implemented <code>Mutalisk / Text</code> and
+            <code>Mutalisk / Data</code> slices.
+          </p>
+        </article>
+        <article class="info-card">
+          <h2>Build</h2>
+          <pre><code>dotnet build MutaliskGH\MutaliskGH.csproj -f net48</code></pre>
+        </article>
+        <article class="info-card">
+          <h2>Test</h2>
+          <pre><code>dotnet test MutaliskGH.Tests\MutaliskGH.Tests.csproj</code></pre>
+        </article>
+      </section>
+
+      <section id="implemented" class="section-block">
+        <div class="section-heading">
+          <p class="section-kicker">Implemented</p>
+          <h2>Current Component Families</h2>
+        </div>
+
+        <div class="family-grid">
+          <article class="family-card">
+            <h3>Mutalisk / Text</h3>
+            <ul>
+              <li>RegEx Escape</li>
+              <li>Text Match Multiple</li>
+              <li>Multiple RegEx Index</li>
+              <li>RegEx Cull</li>
+              <li>Basic Strip</li>
+              <li>RegEx Text Replace</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <h3>Mutalisk / Data</h3>
+            <ul>
+              <li>Convert to Boolean</li>
+              <li>Return Duplicate Index</li>
+              <li>Return Duplicate Quantity</li>
+              <li>Integer Series</li>
+              <li>Branch by Member</li>
+              <li>Cull ENF</li>
+              <li>Partition Branches</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="section-kicker">Framework</p>
+          <h2>Shared Project Structure</h2>
+        </div>
+
+        <div class="framework-grid">
+          <article class="framework-card">
+            <h3>MutaliskGH</h3>
+            <p>Grasshopper-facing wrappers, framework classes, categories, icons, and UI behavior.</p>
+          </article>
+          <article class="framework-card">
+            <h3>MutaliskGH.Core</h3>
+            <p>Pure reusable logic for regex, duplicate analysis, tree grouping, and partition rules.</p>
+          </article>
+          <article class="framework-card">
+            <h3>MutaliskGH.Tests</h3>
+            <p>Fast non-Grasshopper tests that validate core behaviors before interactive plugin checks.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="section-kicker">Interaction Notes</p>
+          <h2>Current Grasshopper Behaviors</h2>
+        </div>
+
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>ZUI Lanes</h3>
+            <p>
+              <code>RegEx Cull</code>, <code>Branch by Member</code>, and <code>Cull ENF</code>
+              support zoomable <code>||</code> lane expansion for parallel streams.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Pattern Handling</h3>
+            <p>
+              <code>Partition Branches</code> accepts both flat and grafted pattern inputs as long as
+              they represent one branch decision per source branch.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Migration Strategy</h3>
+            <p>
+              Revit automation and workflow-heavy tools remain intentionally outside the current compiled slice.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block links-block">
+        <div class="section-heading">
+          <p class="section-kicker">References</p>
+          <h2>Docs and Planning Links</h2>
+        </div>
+
+        <div class="link-list">
+          <a class="link-card" href="../README.md">
+            <span class="link-title">README</span>
+            <span class="link-copy">Project overview, build commands, and current controls.</span>
+          </a>
+          <a class="link-card" href="notion-migration-architecture.md">
+            <span class="link-title">Migration Architecture Memo</span>
+            <span class="link-copy">Family grouping, MVP planning, migration order, and workflow boundaries.</span>
+          </a>
+          <a class="link-card" href="https://github.com/shapediver/GrasshopperPluginTemplate">
+            <span class="link-title">ShapeDiver Plugin Template</span>
+            <span class="link-copy">Reference template for Grasshopper and Rhino plugin structure.</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
