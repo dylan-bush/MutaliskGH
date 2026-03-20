@@ -1,10 +1,11 @@
 using Grasshopper.Kernel;
+using MutaliskGH.Core;
 using System;
 using System.Drawing;
 
 namespace MutaliskGH.Framework
 {
-    internal abstract class BaseComponent : GH_Component
+    public abstract class BaseComponent : GH_Component
     {
         protected BaseComponent(
             string name,

@@ -1,8 +1,8 @@
 using System;
 
-namespace MutaliskGH.Framework
+namespace MutaliskGH.Core
 {
-    internal sealed class Result<T>
+    public sealed class Result<T>
     {
         private Result(bool isSuccess, T value, string errorMessage)
         {

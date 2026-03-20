@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="MutaliskGH.Core/MutaliskGH.Core.csproj" />
   <Project Path="MutaliskGH/MutaliskGH.csproj" />
+  <Project Path="MutaliskGH.Tests/MutaliskGH.Tests.csproj" />
 </Solution>
