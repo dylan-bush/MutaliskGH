@@ -30,8 +30,8 @@
           <h2>Current Scope</h2>
           <p>
             The repo currently contains the shared plugin framework, a pure-logic core library,
-            automated tests, and the first implemented <code>Mutalisk / Text</code> and
-            <code>Mutalisk / Data</code> slices.
+            automated tests, and the first implemented <code>Mutalisk / Text</code>,
+            <code>Mutalisk / Data</code>, and <code>Mutalisk / Format</code> slices.
           </p>
         </article>
         <article class="info-card">
@@ -75,6 +75,16 @@
               <li>Partition Branches</li>
             </ul>
           </article>
+
+          <article class="family-card">
+            <h3>Mutalisk / Format</h3>
+            <ul>
+              <li>Serialize Plane</li>
+              <li>Deserialize Plane</li>
+              <li>Decimal In to Fractional Ft In</li>
+              <li>Find Next Available Code</li>
+            </ul>
+          </article>
         </div>
       </section>
 
@@ -91,7 +101,7 @@
           </article>
           <article class="framework-card">
             <h3>MutaliskGH.Core</h3>
-            <p>Pure reusable logic for regex, duplicate analysis, tree grouping, and partition rules.</p>
+            <p>Pure reusable logic for regex, duplicate analysis, tree grouping, partition rules, and formatting tools.</p>
           </article>
           <article class="framework-card">
             <h3>MutaliskGH.Tests</h3>
@@ -119,6 +129,14 @@
             <p>
               <code>Partition Branches</code> accepts both flat and grafted pattern inputs as long as
               they represent one branch decision per source branch.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Code Formats</h3>
+            <p>
+              <code>Find Next Available Code</code> supports fixed and searchable slots, including
+              <code>{000###}</code> for the original behavior and literal wrappers such as
+              <code>LVL-{000###}</code>.
             </p>
           </article>
           <article class="note-card">
