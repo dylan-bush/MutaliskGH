@@ -30,8 +30,9 @@
           <h2>Current Scope</h2>
           <p>
             The repo currently contains the shared plugin framework, a pure-logic core library,
-            automated tests, and the first implemented <code>Mutalisk / Text</code>,
-            <code>Mutalisk / Data</code>, and <code>Mutalisk / Format</code> slices.
+            automated tests, and implemented <code>Mutalisk / Text</code>,
+            <code>Mutalisk / Data</code>, <code>Mutalisk / Format</code>, and the first
+            <code>Mutalisk / Geometry</code> slice.
           </p>
         </article>
         <article class="info-card">
@@ -85,6 +86,16 @@
               <li>Find Next Available Code</li>
             </ul>
           </article>
+
+          <article class="family-card">
+            <h3>Mutalisk / Geometry</h3>
+            <ul>
+              <li>Round Points</li>
+              <li>Rebuild Rectangle</li>
+              <li>Oriented Bounding Box</li>
+              <li>Offset Select</li>
+            </ul>
+          </article>
         </div>
       </section>
 
@@ -101,7 +112,7 @@
           </article>
           <article class="framework-card">
             <h3>MutaliskGH.Core</h3>
-            <p>Pure reusable logic for regex, duplicate analysis, tree grouping, partition rules, and formatting tools.</p>
+            <p>Pure reusable logic for regex, duplicate analysis, tree grouping, partition rules, formatting tools, and geometry helpers.</p>
           </article>
           <article class="framework-card">
             <h3>MutaliskGH.Tests</h3>
@@ -137,6 +148,27 @@
               <code>Find Next Available Code</code> supports fixed and searchable slots, including
               <code>{000###}</code> for the original behavior and literal wrappers such as
               <code>LVL-{000###}</code>.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Geometry Modes</h3>
+            <p>
+              <code>Oriented Bounding Box</code> supports clustered, mean, and length-weighted
+              edge-direction strategies through <code>Method (M)</code>.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Ordered Rectangle Output</h3>
+            <p>
+              <code>Rebuild Rectangle</code> preserves source geometry and returns vertices starting
+              at bottom-left, then clockwise.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Offset Selection</h3>
+            <p>
+              <code>Offset Select</code> returns the selected offset result through
+              <code>Selected Offset (O)</code>, or both in ordered output when requested.
             </p>
           </article>
           <article class="note-card">

@@ -1,6 +1,6 @@
 # MutaliskGH
 
-MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library of custom utility components, tree tools, text tools, and workflow helpers into a maintainable C# codebase. The repo now contains the migration architecture memo, a reusable plugin framework, a shared pure-logic core library, an automated test project, and the first implemented `Mutalisk / Text`, `Mutalisk / Data`, and `Mutalisk / Format` component slices.
+MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library of custom utility components, tree tools, text tools, and workflow helpers into a maintainable C# codebase. The repo now contains the migration architecture memo, a reusable plugin framework, a shared pure-logic core library, an automated test project, and the implemented `Mutalisk / Text`, `Mutalisk / Data`, `Mutalisk / Format`, and first `Mutalisk / Geometry` slices.
 
 ## Features
 
@@ -27,8 +27,14 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
   - `Deserialize Plane`
   - `Decimal In to Fractional Ft In`
   - `Find Next Available Code`
+- Implemented `Mutalisk / Geometry` components:
+  - `Round Points`
+  - `Rebuild Rectangle`
+  - `Oriented Bounding Box`
+  - `Offset Select`
 - ZUI-expandable parallel stream support on components that need it, including `RegEx Cull`, `Branch by Member`, and `Cull ENF`
 - Flexible code-format search support in `Find Next Available Code`, including original-style fixed slots via patterns like `{000###}`
+- Multiple orientation strategies in `Oriented Bounding Box`, including clustered edge directions, mean direction, and length-weighted mean
 - Multi-target Grasshopper build setup for Rhino 8-compatible `.gha` output
 
 ## Getting Started
@@ -41,10 +47,13 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
 
 ## Controls
 
-- Grasshopper components appear under the `Mutalisk` tab and currently populate the `Text`, `Data`, and `Format` subcategories.
+- Grasshopper components appear under the `Mutalisk` tab and currently populate the `Text`, `Data`, `Format`, and `Geometry` subcategories.
 - Components that use ZUI can be expanded with Grasshopper zoom controls to add additional `||` lanes.
 - `Partition Branches` uses a branch-selection pattern in `P`; flat and grafted pattern inputs are both supported when they provide one decision per branch.
 - `Find Next Available Code` accepts a `Format` input. Use `{000###}` for the original behavior, `{000000}` for a fully searchable 6-digit code, or literal wrappers such as `LVL-{000###}`.
+- `Oriented Bounding Box` accepts `Method (M)`: `0` for clustered edge directions, `1` for mean direction, and `2` for length-weighted mean.
+- `Rebuild Rectangle` preserves the source rectangle geometry and returns ordered vertices starting at bottom-left and continuing clockwise.
+- `Offset Select` returns the selected offset curve or ordered pair of offset curves through `Selected Offset (O)`.
 - Host-side-effect tools such as file-open and Revit export workflows are still expected to remain script or workflow driven unless explicitly migrated later.
 
 ## Documentation Site

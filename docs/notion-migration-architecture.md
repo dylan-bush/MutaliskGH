@@ -17,6 +17,21 @@ This memo assumes the plugin will eventually follow the same broad separation of
 - Revit/Rhino.Inside adapters
 - tests around the shared layers first
 
+## Current Implementation Status
+
+The repo has now moved beyond the original MVP baseline and currently includes these compiled families and slices:
+
+- `Mutalisk / Text`: `RegEx Escape`, `Text Match Multiple`, `Multiple RegEx Index`, `RegEx Cull`, `Basic Strip`, `RegEx Text Replace`
+- `Mutalisk / Data`: `Convert to Boolean`, `Return Duplicate Index`, `Return Duplicate Quantity`, `Integer Series`, `Branch by Member`, `Cull ENF`, `Partition Branches`
+- `Mutalisk / Format`: `Serialize Plane`, `Deserialize Plane`, `Decimal In to Fractional Ft In`, `Find Next Available Code`
+- `Mutalisk / Geometry`: `Round Points`, `Rebuild Rectangle`, `Oriented Bounding Box`, `Offset Select`
+
+Recent geometry-specific progress:
+
+- `Oriented Bounding Box` now supports 3 orientation strategies through `Method (M)`: clustered edge directions, mean direction, and length-weighted mean
+- `Rebuild Rectangle` now evaluates source rectangle geometry and returns ordered vertices and edges rather than reconstructing from width and height alone
+- `Offset Select` is the current user-facing name for the former `Offset Larger-Smaller`
+
 ## Scope And Normalization
 
 - CSV rows reviewed: `42`
@@ -63,7 +78,7 @@ This memo assumes the plugin will eventually follow the same broad separation of
 ### Family 4
 
 - family name: `Mutalisk / Geometry`
-- included components: `Oriented Bounding Box`, `Offset Larger-Smaller`, `Rebuild Rectangle`, `Round Points`, `Extend and Trim Curves`
+- included components: `Oriented Bounding Box`, `Offset Select`, `Rebuild Rectangle`, `Round Points`, `Extend and Trim Curves`
 - shared logic/core helpers: tolerance handling, plane/box utilities, curve extension and trim wrappers, point rounding helpers
 - suggested plugin category/subcategory: `Mutalisk / Geometry`
 - recommended migration order: `3`
@@ -176,7 +191,7 @@ All normalized tools are assigned exactly once to a primary family:
 - `Mutalisk / Data`: `Cull Empty Null or False Branches`, `Return Duplicate Index`, `Return Duplicate Quantity`, `Test Null or Text-Length-0`, `Branch by Member`, `Partition Branches`, `Integer Series`
 - `Mutalisk / Text`: `RegEx Escape`, `Basic Strip`, `RegEx Text Replace`, `Text Match Multiple`, `Multiple RegEx Index`, `RegEx Cull`
 - `Mutalisk / Format`: `Decimal In to Fractional Ft In`, `Find Next Available Code`, `Serialize Plane`, `Deserialize Plane`
-- `Mutalisk / Geometry`: `Oriented Bounding Box`, `Offset Larger-Smaller`, `Rebuild Rectangle`, `Round Points`, `Extend and Trim Curves`
+- `Mutalisk / Geometry`: `Oriented Bounding Box`, `Offset Select`, `Rebuild Rectangle`, `Round Points`, `Extend and Trim Curves`
 - `Mutalisk / Rhino`: `Reference Selected`, `SelValue`, `Get Group Membership`, `Get Layertable`, `Open ACAD File RO`
 - `Mutalisk / Display`: `PaletteEngine`, `Color by Branch`, `Preview Color by Value`
 - `Mutalisk / Revit Query`: `RiR_ViewRangeBrep`, `RiR_GetParentElement`, `RiR_SpotElevationReference`, `RiR_MatchFilterElements`, `RiR_ElementMaterialMap-2023`, `RiR_ElementMaterialMap-2025`
