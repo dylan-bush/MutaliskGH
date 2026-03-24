@@ -15,7 +15,7 @@ namespace MutaliskGH.Components.Geometry
             : base(
                 "Round Points",
                 "rPts",
-                "Round point coordinates to the requested increment while preserving tree structure.",
+                "Round point coordinates to the requested factor while preserving tree structure.",
                 CategoryNames.Geometry)
         {
         }
@@ -34,9 +34,9 @@ namespace MutaliskGH.Components.Geometry
                 GH_ParamAccess.tree);
 
             parameterManager.AddNumberParameter(
-                "Increment",
-                "I",
-                "Rounding increment applied to each coordinate.",
+                "Factor",
+                "F",
+                "Rounding factor applied to each coordinate.",
                 GH_ParamAccess.item,
                 1.0);
 
@@ -66,8 +66,8 @@ namespace MutaliskGH.Components.Geometry
                 return;
             }
 
-            double increment = 1.0;
-            dataAccess.GetData(1, ref increment);
+            double factor = 1.0;
+            dataAccess.GetData(1, ref factor);
 
             GH_Structure<GH_Point> output = new GH_Structure<GH_Point>();
             for (int pathIndex = 0; pathIndex < points.PathCount; pathIndex++)
@@ -85,7 +85,7 @@ namespace MutaliskGH.Components.Geometry
 
                     Result<Point3Value> result = PointRoundingLogic.Round(
                         new Point3Value(point.Value.X, point.Value.Y, point.Value.Z),
-                        increment);
+                        factor);
 
                     if (ReportFailure(result))
                     {

@@ -6,51 +6,54 @@
   <title>MutaliskGH Docs</title>
   <meta
     name="description"
-    content="Documentation site for MutaliskGH, a compiled Grasshopper plugin for migrating custom utility, tree, and text tools into a maintainable C# codebase.">
+    content="Documentation site for MutaliskGH, a compiled Grasshopper plugin for migrating utility, tree, display, and geometry tools into a maintainable C# codebase.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="page-shell">
     <header class="hero">
       <p class="eyebrow">Grasshopper Plugin Documentation</p>
-      <h1>MutaliskGH</h1>
-      <p class="hero-copy">
-        MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library
-        of utility components, tree tools, text tools, and workflow helpers into a maintainable C# plugin.
-      </p>
+      <div class="hero-grid">
+        <div>
+          <h1>MutaliskGH</h1>
+          <p class="hero-copy">
+            A compiled Grasshopper plugin for migrating a Notion-documented utility library into a
+            maintainable C# codebase with reusable core logic, tests, and family-based component slices.
+          </p>
+        </div>
+        <div class="hero-panel">
+          <p class="hero-panel-label">Current Scope</p>
+          <ul class="hero-list">
+            <li>Text, Data, Format, Display, and Geometry slices implemented</li>
+            <li>Pure logic in <code>MutaliskGH.Core</code></li>
+            <li>Fast regression coverage in <code>MutaliskGH.Tests</code></li>
+          </ul>
+        </div>
+      </div>
       <div class="hero-actions">
-        <a class="button button-primary" href="#implemented">Implemented Components</a>
+        <a class="button button-primary" href="#families">Implemented Families</a>
         <a class="button button-secondary" href="notion-migration-architecture.md">Migration Architecture</a>
+        <a class="button button-secondary" href="../README.md">README</a>
       </div>
     </header>
 
     <main>
-      <section class="grid-section">
-        <article class="info-card">
-          <h2>Current Scope</h2>
-          <p>
-            The repo currently contains the shared plugin framework, a pure-logic core library,
-            automated tests, and implemented <code>Mutalisk / Text</code>,
-            <code>Mutalisk / Data</code>, <code>Mutalisk / Format</code>, and the first
-            <code>Mutalisk / Geometry</code> slice.
-          </p>
-        </article>
-        <article class="info-card">
-          <h2>Build</h2>
+      <section class="command-strip">
+        <article class="command-card">
+          <p class="command-label">Build</p>
           <pre><code>dotnet build MutaliskGH\MutaliskGH.csproj -f net48</code></pre>
         </article>
-        <article class="info-card">
-          <h2>Test</h2>
+        <article class="command-card">
+          <p class="command-label">Test</p>
           <pre><code>dotnet test MutaliskGH.Tests\MutaliskGH.Tests.csproj</code></pre>
         </article>
       </section>
 
-      <section id="implemented" class="section-block">
+      <section id="families" class="section-block">
         <div class="section-heading">
           <p class="section-kicker">Implemented</p>
           <h2>Current Component Families</h2>
         </div>
-
         <div class="family-grid">
           <article class="family-card">
             <h3>Mutalisk / Text</h3>
@@ -88,6 +91,14 @@
           </article>
 
           <article class="family-card">
+            <h3>Mutalisk / Display</h3>
+            <ul>
+              <li>Color by Branch</li>
+              <li>Preview Color by Value</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
             <h3>Mutalisk / Geometry</h3>
             <ul>
               <li>Round Points</li>
@@ -101,33 +112,30 @@
 
       <section class="section-block">
         <div class="section-heading">
-          <p class="section-kicker">Framework</p>
-          <h2>Shared Project Structure</h2>
+          <p class="section-kicker">Behavior</p>
+          <h2>Current Grasshopper Notes</h2>
         </div>
-
-        <div class="framework-grid">
-          <article class="framework-card">
-            <h3>MutaliskGH</h3>
-            <p>Grasshopper-facing wrappers, framework classes, categories, icons, and UI behavior.</p>
-          </article>
-          <article class="framework-card">
-            <h3>MutaliskGH.Core</h3>
-            <p>Pure reusable logic for regex, duplicate analysis, tree grouping, partition rules, formatting tools, and geometry helpers.</p>
-          </article>
-          <article class="framework-card">
-            <h3>MutaliskGH.Tests</h3>
-            <p>Fast non-Grasshopper tests that validate core behaviors before interactive plugin checks.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-heading">
-          <p class="section-kicker">Interaction Notes</p>
-          <h2>Current Grasshopper Behaviors</h2>
-        </div>
-
         <div class="notes-grid">
+          <article class="note-card">
+            <h3>Display Preview</h3>
+            <p>
+              <code>Color by Branch</code> and <code>Preview Color by Value</code> both generate
+              colors and also preview compatible geometry using those colors directly in the viewport.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Grouped Value Preview</h3>
+            <p>
+              <code>Preview Color by Value</code> filters false-like values, groups retained geometry
+              by distinct value, outputs branched geometry and value trees, and emits one color per branch.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Seed Naming</h3>
+            <p>
+              Both display components use <code>S</code> as the seed input so their IO conventions stay aligned.
+            </p>
+          </article>
           <article class="note-card">
             <h3>ZUI Lanes</h3>
             <p>
@@ -136,46 +144,52 @@
             </p>
           </article>
           <article class="note-card">
-            <h3>Pattern Handling</h3>
+            <h3>Formatting Controls</h3>
             <p>
-              <code>Partition Branches</code> accepts both flat and grafted pattern inputs as long as
-              they represent one branch decision per source branch.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Code Formats</h3>
-            <p>
-              <code>Find Next Available Code</code> supports fixed and searchable slots, including
-              <code>{000###}</code> for the original behavior and literal wrappers such as
-              <code>LVL-{000###}</code>.
+              <code>Find Next Available Code</code> supports patterns such as <code>{000###}</code>,
+              and <code>Round Points</code> uses <code>Factor (F)</code> for coordinate rounding.
             </p>
           </article>
           <article class="note-card">
             <h3>Geometry Modes</h3>
             <p>
-              <code>Oriented Bounding Box</code> supports clustered, mean, and length-weighted
-              edge-direction strategies through <code>Method (M)</code>.
+              <code>Oriented Bounding Box</code> exposes clustered, mean, and length-weighted
+              direction strategies through <code>Method (M)</code>.
             </p>
           </article>
           <article class="note-card">
-            <h3>Ordered Rectangle Output</h3>
+            <h3>Rectangle Ordering</h3>
             <p>
-              <code>Rebuild Rectangle</code> preserves source geometry and returns vertices starting
-              at bottom-left, then clockwise.
+              <code>Rebuild Rectangle</code> preserves source geometry and returns vertices ordered
+              bottom-left, top-left, top-right, bottom-right.
             </p>
           </article>
           <article class="note-card">
-            <h3>Offset Selection</h3>
+            <h3>Workflow Boundary</h3>
             <p>
-              <code>Offset Select</code> returns the selected offset result through
-              <code>Selected Offset (O)</code>, or both in ordered output when requested.
+              Revit automation and other host-side-effect-heavy tools remain intentionally outside the current compiled slice.
             </p>
           </article>
-          <article class="note-card">
-            <h3>Migration Strategy</h3>
-            <p>
-              Revit automation and workflow-heavy tools remain intentionally outside the current compiled slice.
-            </p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="section-kicker">Structure</p>
+          <h2>Shared Project Layout</h2>
+        </div>
+        <div class="framework-grid">
+          <article class="framework-card">
+            <h3>MutaliskGH</h3>
+            <p>Grasshopper wrappers, framework classes, component UI, and viewport preview behavior.</p>
+          </article>
+          <article class="framework-card">
+            <h3>MutaliskGH.Core</h3>
+            <p>Pure reusable logic for text, data-tree manipulation, formatting, display color generation, and geometry helpers.</p>
+          </article>
+          <article class="framework-card">
+            <h3>MutaliskGH.Tests</h3>
+            <p>Fast logic tests used to validate behavior before interactive Grasshopper checks.</p>
           </article>
         </div>
       </section>
@@ -185,11 +199,10 @@
           <p class="section-kicker">References</p>
           <h2>Docs and Planning Links</h2>
         </div>
-
         <div class="link-list">
           <a class="link-card" href="../README.md">
             <span class="link-title">README</span>
-            <span class="link-copy">Project overview, build commands, and current controls.</span>
+            <span class="link-copy">Overview, build commands, implemented families, and current controls.</span>
           </a>
           <a class="link-card" href="notion-migration-architecture.md">
             <span class="link-title">Migration Architecture Memo</span>
