@@ -29,6 +29,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MutaliskGH.Core\MutaliskGH.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Icons\*.png" />
+  </ItemGroup>
   
   <!-- For Windows only builds -->
   <PropertyGroup Condition="$(TargetFramework.Contains('-windows')) or $(TargetFramework.StartsWith('net4'))">

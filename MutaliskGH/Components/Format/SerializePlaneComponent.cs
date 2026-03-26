@@ -23,6 +23,11 @@ namespace MutaliskGH.Components.Format
             get { return new Guid("6e0d56b2-5bad-438b-ac46-c73668badff6"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "SerializePlane.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddPlaneParameter(

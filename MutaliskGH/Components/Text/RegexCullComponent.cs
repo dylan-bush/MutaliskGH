@@ -27,6 +27,11 @@ namespace MutaliskGH.Components.Text
             get { return new Guid("8d5666cf-ff30-49f9-b9c0-c881971309f4"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "RegexCull.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddBooleanParameter(

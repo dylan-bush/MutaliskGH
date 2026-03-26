@@ -24,6 +24,11 @@ namespace MutaliskGH.Components.Data
             get { return new Guid("90d898be-2176-413b-8971-ec964570a76b"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "ReturnDuplicateIndex.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddGenericParameter(

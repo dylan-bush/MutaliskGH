@@ -25,6 +25,11 @@ namespace MutaliskGH.Components.Geometry
             get { return new Guid("582516ee-903b-4236-b18d-59e538fb5171"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "RebuildRectangle.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddRectangleParameter(

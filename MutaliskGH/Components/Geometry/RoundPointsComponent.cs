@@ -25,6 +25,11 @@ namespace MutaliskGH.Components.Geometry
             get { return new Guid("fb72e53b-e889-4d9d-aa9f-91a5feecdccf"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "RoundPoints.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddPointParameter(

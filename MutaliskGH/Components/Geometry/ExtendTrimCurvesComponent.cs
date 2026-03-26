@@ -28,6 +28,11 @@ namespace MutaliskGH.Components.Geometry
             get { return new Guid("0a9d1fd8-72d4-4af2-bc4f-b6d76e5d6234"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "ExtendTrimCurves.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddCurveParameter(

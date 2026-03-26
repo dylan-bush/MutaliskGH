@@ -25,6 +25,11 @@ namespace MutaliskGH.Components.Rhino
             get { return new Guid("1d25adce-6c95-4718-b7e5-05bd43a0f1d8"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "SelValue.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddTextParameter(

@@ -24,6 +24,11 @@ namespace MutaliskGH.Components.Geometry
             get { return new Guid("2da10d0b-527b-498a-9283-79174b897800"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "OrientedBoundingBox.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddBrepParameter(

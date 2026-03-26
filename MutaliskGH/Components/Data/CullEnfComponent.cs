@@ -29,6 +29,11 @@ namespace MutaliskGH.Components.Data
             get { return new Guid("a7cd20b6-0b58-454a-b67d-56f8f7d0c810"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "CullEnf.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddGenericParameter(

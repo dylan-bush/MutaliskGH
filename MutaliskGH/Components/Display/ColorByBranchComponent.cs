@@ -31,6 +31,11 @@ namespace MutaliskGH.Components.Display
             get { return new Guid("cedc8dc6-4c7f-4786-819a-5ef03e591ddf"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "ColorByBranch.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddGenericParameter(

@@ -22,6 +22,11 @@ namespace MutaliskGH.Components.Text
             get { return new Guid("fa76c7fd-f518-4284-a4ba-cd0ff1916d6f"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "RegexTextReplace.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddTextParameter(

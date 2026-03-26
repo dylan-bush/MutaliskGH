@@ -22,6 +22,11 @@ namespace MutaliskGH.Components.Format
             get { return new Guid("25b75177-bb6f-4871-bd6e-fd30907d6ae5"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "DecimalFeetInches.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddNumberParameter(

@@ -23,6 +23,11 @@ namespace MutaliskGH.Components.Text
             get { return new Guid("3f0a2a7d-51af-45f4-8f51-5247664ff25e"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "TextMatchMultiple.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddTextParameter(

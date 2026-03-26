@@ -22,6 +22,11 @@ namespace MutaliskGH.Components.Data
             get { return new Guid("69a9ed49-819d-40bc-9ce4-e080c1e22038"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "ConvertToBoolean.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddGenericParameter(

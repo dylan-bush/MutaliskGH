@@ -24,6 +24,11 @@ namespace MutaliskGH.Components.Format
             get { return new Guid("672e4797-eadc-4109-9b7d-3ed266eb7e18"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "FindNextAvailableCode.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddGenericParameter(

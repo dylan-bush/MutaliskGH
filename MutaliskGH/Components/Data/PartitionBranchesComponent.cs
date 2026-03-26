@@ -25,6 +25,11 @@ namespace MutaliskGH.Components.Data
             get { return new Guid("a70c0c11-2d98-4f86-a6a4-4eb74aa1b478"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "PartitionBranches.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddGenericParameter(

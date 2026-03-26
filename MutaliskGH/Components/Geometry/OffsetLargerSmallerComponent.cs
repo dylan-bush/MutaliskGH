@@ -25,6 +25,11 @@ namespace MutaliskGH.Components.Geometry
             get { return new Guid("7f99c95e-6bc9-44ae-bda3-e35184553b81"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "OffsetSelect.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddIntegerParameter(

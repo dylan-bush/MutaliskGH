@@ -22,6 +22,11 @@ namespace MutaliskGH.Components.Text
             get { return new Guid("d38c3697-2f75-4d32-a61f-267896285f2f"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "BasicStrip.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
             parameterManager.AddTextParameter(
