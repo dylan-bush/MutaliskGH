@@ -17,25 +17,13 @@ namespace MutaliskGH.Core.Display
             }
 
             int count = System.Math.Min(geometry.Count, values.Count);
-            List<object> filteredGeometry = new List<object>();
-            List<object> filteredValues = new List<object>();
+            List<object> filteredGeometry = new List<object>(count);
+            List<object> filteredValues = new List<object>(count);
 
             for (int index = 0; index < count; index++)
             {
-                object value = values[index];
-                Result<bool> keepResult = TestNullOrTextLengthZeroLogic.Evaluate(value);
-                if (keepResult.IsFailure)
-                {
-                    return Result<PreviewColorByValueResult>.Failure(keepResult.ErrorMessage);
-                }
-
-                if (!keepResult.Value)
-                {
-                    continue;
-                }
-
                 filteredGeometry.Add(geometry[index]);
-                filteredValues.Add(value);
+                filteredValues.Add(values[index]);
             }
 
             Result<BranchByMemberResult<object>> groupingResult = BranchByMemberLogic.Analyze(filteredValues);

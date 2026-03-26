@@ -170,5 +170,95 @@ namespace MutaliskGH.Tests
             Assert.Equal(1, result.Value.OrderedSides[0]);
             Assert.Equal(-1, result.Value.OrderedSides[1]);
         }
+
+        [Fact]
+        public void CurveTrimSelectionLogic_WithNoIntersections_KeepsOriginalSpan()
+        {
+            Result<CurveTrimSelectionResult> result = CurveTrimSelectionLogic.Select(
+                -1.0,
+                11.0,
+                0.0,
+                10.0,
+                new double[0],
+                0.001,
+                false);
+
+            Assert.True(result.IsSuccess);
+            Assert.False(result.Value.ShouldTrim);
+            Assert.Equal(-1.0, result.Value.StartParameter, 6);
+            Assert.Equal(11.0, result.Value.EndParameter, 6);
+        }
+
+        [Fact]
+        public void CurveTrimSelectionLogic_WithSingleOuterIntersection_ExtendsOneSideOnly()
+        {
+            Result<CurveTrimSelectionResult> result = CurveTrimSelectionLogic.Select(
+                0.5,
+                10.5,
+                2.0,
+                8.0,
+                new[] { 10.5 },
+                0.001,
+                false);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.ShouldTrim);
+            Assert.Equal(0.5, result.Value.StartParameter, 6);
+            Assert.Equal(10.5, result.Value.EndParameter, 6);
+        }
+
+        [Fact]
+        public void CurveTrimSelectionLogic_WithMultipleIntersections_UsesOuterSpan()
+        {
+            Result<CurveTrimSelectionResult> result = CurveTrimSelectionLogic.Select(
+                0.5,
+                9.5,
+                2.0,
+                8.0,
+                new[] { 1.25, 8.75, 5.0 },
+                0.001,
+                false);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.ShouldTrim);
+            Assert.Equal(1.25, result.Value.StartParameter, 6);
+            Assert.Equal(8.75, result.Value.EndParameter, 6);
+        }
+
+        [Fact]
+        public void CurveTrimSelectionLogic_WithSingleInteriorIntersection_CanKeepCurveUntrimmed()
+        {
+            Result<CurveTrimSelectionResult> result = CurveTrimSelectionLogic.Select(
+                0.5,
+                9.5,
+                2.0,
+                8.0,
+                new[] { 4.0 },
+                0.001,
+                false);
+
+            Assert.True(result.IsSuccess);
+            Assert.False(result.Value.ShouldTrim);
+            Assert.Equal(0.5, result.Value.StartParameter, 6);
+            Assert.Equal(9.5, result.Value.EndParameter, 6);
+        }
+
+        [Fact]
+        public void CurveTrimSelectionLogic_WithSingleInteriorIntersection_CanTrimToLongerSide()
+        {
+            Result<CurveTrimSelectionResult> result = CurveTrimSelectionLogic.Select(
+                0.5,
+                9.5,
+                2.0,
+                8.0,
+                new[] { 4.0 },
+                0.001,
+                true);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.ShouldTrim);
+            Assert.Equal(4.0, result.Value.StartParameter, 6);
+            Assert.Equal(9.5, result.Value.EndParameter, 6);
+        }
     }
 }

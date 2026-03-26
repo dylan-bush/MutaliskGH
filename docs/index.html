@@ -24,7 +24,7 @@
         <div class="hero-panel">
           <p class="hero-panel-label">Current Scope</p>
           <ul class="hero-list">
-            <li>Text, Data, Format, Display, and Geometry slices implemented</li>
+            <li>Text, Data, Format, Display, Geometry, and first Rhino slices implemented</li>
             <li>Pure logic in <code>MutaliskGH.Core</code></li>
             <li>Fast regression coverage in <code>MutaliskGH.Tests</code></li>
           </ul>
@@ -105,6 +105,15 @@
               <li>Rebuild Rectangle</li>
               <li>Oriented Bounding Box</li>
               <li>Offset Select</li>
+              <li>Extend and Trim Curves</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <h3>Mutalisk / Rhino</h3>
+            <ul>
+              <li>Reference Selected</li>
+              <li>SelValue</li>
             </ul>
           </article>
         </div>
@@ -126,7 +135,7 @@
           <article class="note-card">
             <h3>Grouped Value Preview</h3>
             <p>
-              <code>Preview Color by Value</code> filters false-like values, groups retained geometry
+              <code>Preview Color by Value</code> keeps all paired items, groups geometry
               by distinct value, outputs branched geometry and value trees, and emits one color per branch.
             </p>
           </article>
@@ -158,10 +167,24 @@
             </p>
           </article>
           <article class="note-card">
+            <h3>Extend And Trim</h3>
+            <p>
+              <code>Extend and Trim Curves</code> always returns extended curves, even when no trim occurs,
+              and uses <code>Trim Single (T)</code> to control how single-hit intersections are handled.
+            </p>
+          </article>
+          <article class="note-card">
             <h3>Rectangle Ordering</h3>
             <p>
               <code>Rebuild Rectangle</code> preserves source geometry and returns vertices ordered
               bottom-left, top-left, top-right, bottom-right.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Rhino Selection</h3>
+            <p>
+              <code>Reference Selected</code> stores chosen Rhino object IDs, and <code>SelValue</code>
+              accepts a list of strings and runs one Rhino selection command per value on a rising-edge trigger.
             </p>
           </article>
           <article class="note-card">

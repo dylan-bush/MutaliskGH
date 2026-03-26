@@ -2,7 +2,6 @@ using Grasshopper.Kernel;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using MutaliskGH.Core;
-using MutaliskGH.Core.Data;
 using MutaliskGH.Core.Display;
 using MutaliskGH.Framework;
 using Rhino.Geometry;
@@ -22,7 +21,7 @@ namespace MutaliskGH.Components.Display
             : base(
                 "Preview Color by Value",
                 "PCV",
-                "Filter false-like values, branch geometry by value, and preview each branch with its generated color.",
+                "Group geometry by value, generate branch colors, and preview each branch with its generated color.",
                 CategoryNames.Display)
         {
         }
@@ -70,19 +69,19 @@ namespace MutaliskGH.Components.Display
             parameterManager.AddGenericParameter(
                 "Filtered Input",
                 "Filtered Input",
-                "Filtered geometry branched by distinct value.",
+                "Geometry branched by distinct value.",
                 GH_ParamAccess.tree);
 
             parameterManager.AddGenericParameter(
                 "Filtered Values",
                 "Filtered Values",
-                "Filtered values branched by distinct value.",
+                "Values branched by distinct value.",
                 GH_ParamAccess.tree);
 
             parameterManager.AddGenericParameter(
                 "Set",
                 "Set",
-                "Distinct retained values in first-occurrence order.",
+                "Distinct values in first-occurrence order.",
                 GH_ParamAccess.list);
 
             parameterManager.AddColourParameter(
@@ -132,12 +131,6 @@ namespace MutaliskGH.Components.Display
             List<IGH_Goo> filteredValues = new List<IGH_Goo>();
             for (int index = 0; index < System.Math.Min(rawGeometry.Count, rawValues.Count); index++)
             {
-                Result<bool> keepResult = TestNullOrTextLengthZeroLogic.Evaluate(GrasshopperValueHelper.Unwrap(rawValues[index]));
-                if (!keepResult.IsSuccess || !keepResult.Value)
-                {
-                    continue;
-                }
-
                 filteredGeometry.Add(rawGeometry[index]);
                 filteredValues.Add(rawValues[index]);
             }

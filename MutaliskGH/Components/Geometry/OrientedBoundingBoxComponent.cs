@@ -172,7 +172,7 @@ namespace MutaliskGH.Components.Geometry
             {
                 BrepEdge edge = brep.Edges[edgeIndex];
                 Vector3d vector = edge.PointAtEnd - edge.PointAtStart;
-                if (vector.Length <= Rhino.RhinoMath.ZeroTolerance)
+                if (vector.Length <= global::Rhino.RhinoMath.ZeroTolerance)
                 {
                     continue;
                 }
@@ -184,7 +184,7 @@ namespace MutaliskGH.Components.Geometry
             {
                 BoundingBox worldBounds = brep.GetBoundingBox(true);
                 Vector3d diagonal = worldBounds.Max - worldBounds.Min;
-                if (diagonal.Length > Rhino.RhinoMath.ZeroTolerance)
+                if (diagonal.Length > global::Rhino.RhinoMath.ZeroTolerance)
                 {
                     directions.Add(new CoreGeometry.Vector3Value(diagonal.X, diagonal.Y, diagonal.Z));
                 }

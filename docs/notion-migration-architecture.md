@@ -24,13 +24,22 @@ The repo has now moved beyond the original MVP baseline and currently includes t
 - `Mutalisk / Text`: `RegEx Escape`, `Text Match Multiple`, `Multiple RegEx Index`, `RegEx Cull`, `Basic Strip`, `RegEx Text Replace`
 - `Mutalisk / Data`: `Convert to Boolean`, `Return Duplicate Index`, `Return Duplicate Quantity`, `Integer Series`, `Branch by Member`, `Cull ENF`, `Partition Branches`
 - `Mutalisk / Format`: `Serialize Plane`, `Deserialize Plane`, `Decimal In to Fractional Ft In`, `Find Next Available Code`
-- `Mutalisk / Geometry`: `Round Points`, `Rebuild Rectangle`, `Oriented Bounding Box`, `Offset Select`
+- `Mutalisk / Display`: `Color by Branch`, `Preview Color by Value`
+- `Mutalisk / Geometry`: `Round Points`, `Rebuild Rectangle`, `Oriented Bounding Box`, `Offset Select`, `Extend and Trim Curves`
+- `Mutalisk / Rhino`: `Reference Selected`, `SelValue`
 
 Recent geometry-specific progress:
 
 - `Oriented Bounding Box` now supports 3 orientation strategies through `Method (M)`: clustered edge directions, mean direction, and length-weighted mean
 - `Rebuild Rectangle` now evaluates source rectangle geometry and returns ordered vertices and edges rather than reconstructing from width and height alone
 - `Offset Select` is the current user-facing name for the former `Offset Larger-Smaller`
+- `Extend and Trim Curves` now keeps extension geometry even when no trim occurs and exposes `Trim Single (T)` for single-hit trim control
+
+Recent display and Rhino-specific progress:
+
+- `Preview Color by Value` now keeps all paired items and groups them by distinct value instead of dropping false-like values
+- `Reference Selected` stores selected Rhino object IDs between triggers
+- `SelValue` now accepts a list of strings and runs one Rhino selection command per value on a rising-edge trigger
 
 ## Scope And Normalization
 

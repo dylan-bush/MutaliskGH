@@ -61,7 +61,7 @@ namespace MutaliskGH.Tests
         }
 
         [Fact]
-        public void PreviewColorByValue_FiltersFalseLikeValuesAndBuildsDistinctSet()
+        public void PreviewColorByValue_KeepsAllItemsAndBuildsDistinctSet()
         {
             Result<PreviewColorByValueResult> result = PreviewColorByValueLogic.Evaluate(
                 new object[] { "G1", "G2", "G3", "G4" },
@@ -70,13 +70,14 @@ namespace MutaliskGH.Tests
                 false);
 
             Assert.True(result.IsSuccess);
-            Assert.Equal(new object[] { "G1", "G3", "G4" }, result.Value.FilteredGeometry);
-            Assert.Equal(new object[] { "A", "B", "A" }, result.Value.FilteredValues);
-            Assert.Equal(new object[] { "A", "B" }, result.Value.DistinctValues);
-            Assert.Equal(2, result.Value.BranchColors.Count);
-            Assert.Equal(2, result.Value.MatchPatterns.Count);
-            Assert.Equal(new[] { true, false, true }, result.Value.MatchPatterns[0]);
-            Assert.Equal(new[] { false, true, false }, result.Value.MatchPatterns[1]);
+            Assert.Equal(new object[] { "G1", "G2", "G3", "G4" }, result.Value.FilteredGeometry);
+            Assert.Equal(new object[] { "A", "", "B", "A" }, result.Value.FilteredValues);
+            Assert.Equal(new object[] { "A", "", "B" }, result.Value.DistinctValues);
+            Assert.Equal(3, result.Value.BranchColors.Count);
+            Assert.Equal(3, result.Value.MatchPatterns.Count);
+            Assert.Equal(new[] { true, false, false, true }, result.Value.MatchPatterns[0]);
+            Assert.Equal(new[] { false, true, false, false }, result.Value.MatchPatterns[1]);
+            Assert.Equal(new[] { false, false, true, false }, result.Value.MatchPatterns[2]);
         }
 
         [Fact]
@@ -96,7 +97,7 @@ namespace MutaliskGH.Tests
         }
 
         [Fact]
-        public void PreviewColorByValue_DropsFalseLikeTextAndZeroValues()
+        public void PreviewColorByValue_KeepsFalseLikeTextAndZeroValues()
         {
             Result<PreviewColorByValueResult> result = PreviewColorByValueLogic.Evaluate(
                 new object[] { "G1", "G2", "G3", "G4", "G5" },
@@ -105,9 +106,9 @@ namespace MutaliskGH.Tests
                 false);
 
             Assert.True(result.IsSuccess);
-            Assert.Equal(new object[] { "G1", "G4", "G5" }, result.Value.FilteredGeometry);
-            Assert.Equal(new object[] { "A", "B", "A" }, result.Value.FilteredValues);
-            Assert.Equal(new object[] { "A", "B" }, result.Value.DistinctValues);
+            Assert.Equal(new object[] { "G1", "G2", "G3", "G4", "G5" }, result.Value.FilteredGeometry);
+            Assert.Equal(new object[] { "A", "False", 0, "B", "A" }, result.Value.FilteredValues);
+            Assert.Equal(new object[] { "A", "False", 0, "B" }, result.Value.DistinctValues);
         }
     }
 }
