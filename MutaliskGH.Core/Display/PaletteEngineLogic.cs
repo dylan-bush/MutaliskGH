@@ -26,6 +26,7 @@ namespace MutaliskGH.Core.Display
                 return Result<PaletteEngineResult>.Success(
                     new PaletteEngineResult(
                         Array.Empty<PaletteColorValue>(),
+                        Array.Empty<string>(),
                         new Dictionary<string, IReadOnlyList<PaletteColorValue>>()));
             }
 
@@ -85,7 +86,7 @@ namespace MutaliskGH.Core.Display
                 cursors[label] = cursor + 1;
             }
 
-            return Result<PaletteEngineResult>.Success(new PaletteEngineResult(output, palettes));
+            return Result<PaletteEngineResult>.Success(new PaletteEngineResult(output, groupOrder, palettes));
         }
 
         public static string NormalizeLabel(object value)

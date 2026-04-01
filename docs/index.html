@@ -24,7 +24,7 @@
         <div class="hero-panel">
           <p class="hero-panel-label">Current Scope</p>
           <ul class="hero-list">
-            <li>Text, Data, Format, Display, Geometry, and first Rhino slices implemented</li>
+            <li>Text, Data, Format, Display, Geometry, and Rhino metadata/selection slices implemented</li>
             <li>Pure logic in <code>MutaliskGH.Core</code></li>
             <li>Fast regression coverage in <code>MutaliskGH.Tests</code></li>
           </ul>
@@ -93,6 +93,7 @@
           <article class="family-card">
             <h3>Mutalisk / Display</h3>
             <ul>
+              <li>PaletteEngine</li>
               <li>Color by Branch</li>
               <li>Preview Color by Value</li>
             </ul>
@@ -114,6 +115,8 @@
             <ul>
               <li>Reference Selected</li>
               <li>SelValue</li>
+              <li>Get Group Membership</li>
+              <li>Get Layertable</li>
             </ul>
           </article>
         </div>
@@ -137,6 +140,13 @@
             <p>
               <code>Preview Color by Value</code> keeps all paired items, groups geometry
               by distinct value, outputs branched geometry and value trees, and emits one color per branch.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Palette Utility</h3>
+            <p>
+              <code>PaletteEngine</code> now exposes the shared grouped palette logic directly, returning aligned colors,
+              RGB strings, distinct labels, and grouped branch palettes from the same seed-driven engine used elsewhere.
             </p>
           </article>
           <article class="note-card">
@@ -185,6 +195,20 @@
             <p>
               <code>Reference Selected</code> stores chosen Rhino object IDs, and <code>SelValue</code>
               accepts a list of strings and runs one Rhino selection command per value on a rising-edge trigger.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Rhino Metadata</h3>
+            <p>
+              <code>Get Group Membership</code> accepts referenced Rhino geometry or GUIDs and returns group-name trees,
+              while <code>Get Layertable</code> returns active Rhino layer full paths directly from the document.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Plugin Icon</h3>
+            <p>
+              The plugin now registers a dedicated <code>Mutalisk</code> category icon at Grasshopper load time instead of
+              relying only on assembly metadata.
             </p>
           </article>
           <article class="note-card">

@@ -61,6 +61,22 @@ namespace MutaliskGH.Tests
         }
 
         [Fact]
+        public void PaletteEngine_Generate_PreservesDistinctGroupOrder()
+        {
+            Result<PaletteEngineResult> result = PaletteEngineLogic.Generate(
+                new object[] { "B", "A", "B", "<null>", "A" },
+                0.65,
+                null,
+                false,
+                0.42,
+                0.18);
+
+            Assert.True(result.IsSuccess);
+            Assert.Equal(new[] { "B", "A", "<null>" }, result.Value.GroupLabels);
+            Assert.Equal(3, result.Value.GroupPalettes.Count);
+        }
+
+        [Fact]
         public void PreviewColorByValue_KeepsAllItemsAndBuildsDistinctSet()
         {
             Result<PreviewColorByValueResult> result = PreviewColorByValueLogic.Evaluate(

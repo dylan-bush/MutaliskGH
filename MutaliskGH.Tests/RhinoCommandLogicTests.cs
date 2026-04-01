@@ -1,4 +1,5 @@
 using MutaliskGH.Core.Rhino;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -41,6 +42,46 @@ namespace MutaliskGH.Tests
             var result = RhinoCommandLogic.BuildSelValueCommands(new[] { "", "   " });
 
             Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void TryParseObjectId_AcceptsGuidAndStringValues()
+        {
+            Guid guid = Guid.NewGuid();
+
+            var directResult = RhinoMetadataLogic.TryParseObjectId(guid);
+            var stringResult = RhinoMetadataLogic.TryParseObjectId(guid.ToString());
+
+            Assert.True(directResult.IsSuccess);
+            Assert.Equal(guid, directResult.Value);
+            Assert.True(stringResult.IsSuccess);
+            Assert.Equal(guid, stringResult.Value);
+        }
+
+        [Fact]
+        public void TryParseObjectId_FailsForUnsupportedValues()
+        {
+            var result = RhinoMetadataLogic.TryParseObjectId("not-a-guid");
+
+            Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void NormalizeGroupNames_ReturnsUngroupedWhenNoValidNamesExist()
+        {
+            var emptyResult = RhinoMetadataLogic.NormalizeGroupNames(null);
+            var invalidResult = RhinoMetadataLogic.NormalizeGroupNames(new[] { "", " " });
+
+            Assert.Equal(new[] { "Ungrouped" }, emptyResult.ToArray());
+            Assert.Equal(new[] { "Ungrouped" }, invalidResult.ToArray());
+        }
+
+        [Fact]
+        public void NormalizeLayerPaths_RemovesBlankValuesAndPreservesOrder()
+        {
+            var result = RhinoMetadataLogic.NormalizeLayerPaths(new[] { "A", "", "B::C", " " });
+
+            Assert.Equal(new[] { "A", "B::C" }, result.ToArray());
         }
     }
 }

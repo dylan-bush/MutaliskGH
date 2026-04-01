@@ -24,9 +24,9 @@ The repo has now moved beyond the original MVP baseline and currently includes t
 - `Mutalisk / Text`: `RegEx Escape`, `Text Match Multiple`, `Multiple RegEx Index`, `RegEx Cull`, `Basic Strip`, `RegEx Text Replace`
 - `Mutalisk / Data`: `Convert to Boolean`, `Return Duplicate Index`, `Return Duplicate Quantity`, `Integer Series`, `Branch by Member`, `Cull ENF`, `Partition Branches`
 - `Mutalisk / Format`: `Serialize Plane`, `Deserialize Plane`, `Decimal In to Fractional Ft In`, `Find Next Available Code`
-- `Mutalisk / Display`: `Color by Branch`, `Preview Color by Value`
+- `Mutalisk / Display`: `PaletteEngine`, `Color by Branch`, `Preview Color by Value`
 - `Mutalisk / Geometry`: `Round Points`, `Rebuild Rectangle`, `Oriented Bounding Box`, `Offset Select`, `Extend and Trim Curves`
-- `Mutalisk / Rhino`: `Reference Selected`, `SelValue`
+- `Mutalisk / Rhino`: `Reference Selected`, `SelValue`, `Get Group Membership`, `Get Layertable`
 
 Recent geometry-specific progress:
 
@@ -37,9 +37,13 @@ Recent geometry-specific progress:
 
 Recent display and Rhino-specific progress:
 
+- `PaletteEngine` now has a compiled wrapper that exposes deterministic grouped palettes, aligned colors, RGB strings, and grouped branch palettes directly in Grasshopper
 - `Preview Color by Value` now keeps all paired items and groups them by distinct value instead of dropping false-like values
 - `Reference Selected` stores selected Rhino object IDs between triggers
 - `SelValue` now accepts a list of strings and runs one Rhino selection command per value on a rising-edge trigger
+- `Get Group Membership` now accepts referenced Rhino geometry directly and falls back to GUID parsing when needed
+- `Get Layertable` now returns active Rhino layer `FullPath` values as a compiled component
+- the plugin category icon is now registered through `GH_AssemblyPriority`, so the `Mutalisk` tab icon can differ from per-component icons
 
 ## Scope And Normalization
 
