@@ -22,6 +22,11 @@ namespace MutaliskGH.Components.Rhino
             get { return new Guid("f9228a0e-9728-4d75-a6ba-d4f232e4650d"); }
         }
 
+        protected override string IconResourceName
+        {
+            get { return "GetLayertable.png"; }
+        }
+
         protected override void RegisterInputParams(GH_InputParamManager parameterManager)
         {
         }

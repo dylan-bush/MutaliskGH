@@ -93,10 +93,11 @@
           <article class="family-card">
             <h3>Mutalisk / Display</h3>
             <ul>
-              <li>PaletteEngine</li>
-              <li>Color by Branch</li>
-              <li>Preview Color by Value</li>
-            </ul>
+            <li>PaletteEngine</li>
+            <li>Color by Branch</li>
+            <li>Preview Color by Value</li>
+            <li>PaletteEngine Harness</li>
+          </ul>
           </article>
 
           <article class="family-card">
@@ -150,6 +151,13 @@
             </p>
           </article>
           <article class="note-card">
+            <h3>Palette Harness</h3>
+            <p>
+              <code>PaletteEngine Harness</code> emits aligned sample geometry, sample values, and canned settings so the
+              full display chain can be tested at larger counts without assembling helper definitions by hand.
+            </p>
+          </article>
+          <article class="note-card">
             <h3>Seed Naming</h3>
             <p>
               Both display components use <code>S</code> as the seed input so their IO conventions stay aligned.
@@ -160,6 +168,13 @@
             <p>
               <code>RegEx Cull</code>, <code>Branch by Member</code>, and <code>Cull ENF</code>
               support zoomable <code>||</code> lane expansion for parallel streams.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Regex Cull Fallback</h3>
+            <p>
+              <code>RegEx Cull</code> now still evaluates when only <code>L</code> and <code>Re</code> are connected.
+              If no explicit primary <code>||</code> stream is supplied, the main filtered stream falls back to the test list.
             </p>
           </article>
           <article class="note-card">
@@ -254,6 +269,10 @@
           <a class="link-card" href="notion-migration-architecture.md">
             <span class="link-title">Migration Architecture Memo</span>
             <span class="link-copy">Family grouping, MVP planning, migration order, and workflow boundaries.</span>
+          </a>
+          <a class="link-card" href="palette-engine.md">
+            <span class="link-title">PaletteEngine Guide</span>
+            <span class="link-copy">Short usage notes, sample value lists, and output structure for PaletteEngine.</span>
           </a>
           <a class="link-card" href="https://github.com/shapediver/GrasshopperPluginTemplate">
             <span class="link-title">ShapeDiver Plugin Template</span>

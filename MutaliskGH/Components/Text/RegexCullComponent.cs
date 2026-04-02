@@ -110,9 +110,13 @@ namespace MutaliskGH.Components.Text
             }
 
             List<object> data = new List<object>();
-            if (!dataAccess.GetDataList(3, data))
+            bool hasPrimaryData = dataAccess.GetDataList(3, data);
+            if (!hasPrimaryData)
             {
-                return;
+                for (int index = 0; index < testValues.Count; index++)
+                {
+                    data.Add(testValues[index]);
+                }
             }
 
             Result<RegexCullResult<object>> result = RegexCullLogic.Filter(returnMatches, testValues, patterns, data);

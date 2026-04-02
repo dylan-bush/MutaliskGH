@@ -77,6 +77,45 @@ namespace MutaliskGH.Tests
         }
 
         [Fact]
+        public void PaletteEngineHarness_ReturnsExpectedDefaultPreset()
+        {
+            Result<PaletteEngineHarnessPreset> result = PaletteEngineHarnessLogic.GetPreset(0);
+
+            Assert.True(result.IsSuccess);
+            Assert.Equal("Simple Repeats", result.Value.Name);
+            Assert.Equal(new object[] { "A", "B", "A", "C", "B", "A" }, result.Value.Values);
+            Assert.Equal(0.65, result.Value.Strength, 3);
+            Assert.Equal(7, result.Value.Seed);
+            Assert.False(result.Value.Overdrive);
+        }
+
+        [Fact]
+        public void PaletteEngineHarness_ClampsPresetIndex()
+        {
+            Result<PaletteEngineHarnessPreset> result = PaletteEngineHarnessLogic.GetPreset(999);
+
+            Assert.True(result.IsSuccess);
+            Assert.Equal("Overdrive Sweep", result.Value.Name);
+        }
+
+        [Fact]
+        public void PaletteEngineHarness_ExpandValues_RepeatsPresetSequenceToRequestedCount()
+        {
+            Result<PaletteEngineHarnessPreset> presetResult = PaletteEngineHarnessLogic.GetPreset(1);
+            Assert.True(presetResult.IsSuccess);
+
+            Result<System.Collections.Generic.IReadOnlyList<object>> valuesResult =
+                PaletteEngineHarnessLogic.ExpandValues(presetResult.Value, 14);
+
+            Assert.True(valuesResult.IsSuccess);
+            Assert.Equal(14, valuesResult.Value.Count);
+            Assert.Equal("PNL-101", valuesResult.Value[0]);
+            Assert.Equal("PNL-102", valuesResult.Value[1]);
+            Assert.Equal("PNL-101", valuesResult.Value[6]);
+            Assert.Equal("PNL-102", valuesResult.Value[7]);
+        }
+
+        [Fact]
         public void PreviewColorByValue_KeepsAllItemsAndBuildsDistinctSet()
         {
             Result<PreviewColorByValueResult> result = PreviewColorByValueLogic.Evaluate(
