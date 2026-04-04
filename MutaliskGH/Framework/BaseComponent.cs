@@ -26,6 +26,11 @@ namespace MutaliskGH.Framework
             get { return IconLoader.Load(IconResourceName); }
         }
 
+        public override void CreateAttributes()
+        {
+            m_attributes = new MutaliskComponentAttributes(this);
+        }
+
         protected sealed override void SolveInstance(IGH_DataAccess da)
         {
             try

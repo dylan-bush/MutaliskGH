@@ -13,6 +13,9 @@
   <div class="page-shell">
     <header class="hero">
       <p class="eyebrow">Grasshopper Plugin Documentation</p>
+      <figure class="hero-art">
+        <img src="../MutaliskGH/Resources/Icons/MutaliskGH.png" alt="MutaliskGH header art">
+      </figure>
       <div class="hero-grid">
         <div>
           <h1>MutaliskGH</h1>
@@ -25,6 +28,7 @@
           <p class="hero-panel-label">Current Scope</p>
           <ul class="hero-list">
             <li>Text, Data, Format, Display, Geometry, and Rhino metadata/selection slices implemented</li>
+            <li>First Revit Query slice implemented</li>
             <li>Pure logic in <code>MutaliskGH.Core</code></li>
             <li>Fast regression coverage in <code>MutaliskGH.Tests</code></li>
           </ul>
@@ -118,6 +122,14 @@
               <li>SelValue</li>
               <li>Get Group Membership</li>
               <li>Get Layertable</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <h3>Mutalisk / Revit Query</h3>
+            <ul>
+              <li>Get Parent Element</li>
+              <li>Spot Elevation Reference</li>
             </ul>
           </article>
         </div>
@@ -217,6 +229,13 @@
             <p>
               <code>Get Group Membership</code> accepts referenced Rhino geometry or GUIDs and returns group-name trees,
               while <code>Get Layertable</code> returns active Rhino layer full paths directly from the document.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Revit Query</h3>
+            <p>
+              <code>Get Parent Element</code> and <code>Spot Elevation Reference</code> use reflection-based runtime access
+              so they can work against Rhino.Inside.Revit objects without adding hard compile-time Revit API dependencies.
             </p>
           </article>
           <article class="note-card">

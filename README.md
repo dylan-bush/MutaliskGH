@@ -1,6 +1,10 @@
 # MutaliskGH
 
-MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library of custom utility components, tree tools, text tools, preview tools, geometry tools, and Rhino-interaction helpers into a maintainable C# codebase. The repo now contains the migration architecture memo, a reusable plugin framework, a shared pure-logic core library, an automated test project, and the implemented `Mutalisk / Text`, `Mutalisk / Data`, `Mutalisk / Format`, `Mutalisk / Display`, `Mutalisk / Geometry`, and low-risk `Mutalisk / Rhino` slices.
+<p align="center">
+  <img src="MutaliskGH/Resources/Icons/MutaliskGH.png" alt="MutaliskGH header art" width="320">
+</p>
+
+MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library of custom utility components, tree tools, text tools, preview tools, geometry tools, Rhino-interaction helpers, and Revit query tools into a maintainable C# codebase. The repo now contains the migration architecture memo, a reusable plugin framework, a shared pure-logic core library, an automated test project, and the implemented `Mutalisk / Text`, `Mutalisk / Data`, `Mutalisk / Format`, `Mutalisk / Display`, `Mutalisk / Geometry`, `Mutalisk / Rhino`, and first `Mutalisk / Revit Query` slices.
 
 ## Features
 
@@ -43,6 +47,9 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
   - `SelValue`
   - `Get Group Membership`
   - `Get Layertable`
+- Implemented `Mutalisk / Revit Query` components:
+  - `Get Parent Element`
+  - `Spot Elevation Reference`
 - ZUI-expandable parallel stream support on components that need it, including `RegEx Cull`, `Branch by Member`, and `Cull ENF`
 - Flexible code-format search support in `Find Next Available Code`, including original-style fixed slots via patterns like `{000###}`
 - Multiple orientation strategies in `Oriented Bounding Box`, including clustered edge directions, mean direction, and length-weighted mean
@@ -62,7 +69,7 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
 
 ## Controls
 
-- Grasshopper components appear under the `Mutalisk` tab and currently populate the `Text`, `Data`, `Format`, `Display`, `Geometry`, and `Rhino` subcategories.
+- Grasshopper components appear under the `Mutalisk` tab and currently populate the `Text`, `Data`, `Format`, `Display`, `Geometry`, `Rhino`, and `Revit Query` subcategories.
 - Components that use ZUI can be expanded with Grasshopper zoom controls to add additional `||` lanes.
 - `RegEx Cull` now still computes when only `L` and `Re` are connected; the main `||` output falls back to the test list when no explicit primary parallel stream is supplied.
 - `Partition Branches` uses a branch-selection pattern in `P`; flat and grafted pattern inputs are both supported when they provide one decision per branch.
@@ -77,6 +84,7 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
 - `Offset Select` returns the selected offset curve or ordered pair of offset curves through `Selected Offset (O)`.
 - `Extend and Trim Curves` outputs extended curves even when no trim occurs and supports `Trim Single (T)` to control single-hit trimming behavior.
 - `Reference Selected` stores the last chosen Rhino object IDs until triggered again, `SelValue` accepts a list of strings and runs one Rhino selection command per value on a rising-edge toggle, `Get Group Membership` accepts either referenced Rhino geometry or GUIDs, and `Get Layertable` returns active Rhino layer full paths.
+- `Get Parent Element` and `Spot Elevation Reference` are reflection-based Revit query wrappers intended for Rhino.Inside.Revit runtime objects without adding hard compile-time Revit API references to the plugin project.
 - Host-side-effect tools such as file-open and Revit export workflows are still expected to remain script or workflow driven unless explicitly migrated later.
 
 ## Documentation Site
