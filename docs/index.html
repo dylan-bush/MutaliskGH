@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MutaliskGH Docs</title>
+  <title>MutaliskGH</title>
   <meta
     name="description"
-    content="Documentation site for MutaliskGH, a compiled Grasshopper plugin for migrating utility, tree, display, and geometry tools into a maintainable C# codebase.">
+    content="MutaliskGH is a compiled Grasshopper plugin with production-focused tools for text, data trees, formatting, display, geometry, Rhino interaction, and Rhino.Inside.Revit workflows.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="page-shell">
     <header class="hero">
-      <p class="eyebrow">Grasshopper Plugin Documentation</p>
+      <p class="eyebrow">Grasshopper Plugin</p>
       <figure class="hero-art">
         <img src="../MutaliskGH/Resources/Icons/MutaliskGH.png" alt="MutaliskGH header art">
       </figure>
@@ -20,24 +20,24 @@
         <div>
           <h1>MutaliskGH</h1>
           <p class="hero-copy">
-            A compiled Grasshopper plugin for migrating a Notion-documented utility library into a
-            maintainable C# codebase with reusable core logic, tests, and family-based component slices.
+            A focused Grasshopper toolset for high-utility production work across text processing, tree logic,
+            formatting, display, geometry, Rhino interaction, and Rhino.Inside.Revit.
           </p>
         </div>
         <div class="hero-panel">
           <p class="hero-panel-label">Current Scope</p>
           <ul class="hero-list">
-            <li>Text, Data, Format, Display, Geometry, and Rhino metadata/selection slices implemented</li>
-            <li>Revit Query and first Revit Automation slices implemented</li>
-            <li>Pure logic in <code>MutaliskGH.Core</code></li>
-            <li>Fast regression coverage in <code>MutaliskGH.Tests</code></li>
+            <li>Text, Data, Format, Display, Geometry, Rhino, and Revit families</li>
+            <li>Compiled Grasshopper components with shared core logic and tests</li>
+            <li>Viewport-aware display tools and trigger-safe automation helpers</li>
+            <li>Single product surface under the <code>Mutalisk</code> Grasshopper tab</li>
           </ul>
         </div>
       </div>
       <div class="hero-actions">
-        <a class="button button-primary" href="#families">Implemented Families</a>
-        <a class="button button-secondary" href="notion-migration-architecture.md">Migration Architecture</a>
+        <a class="button button-primary" href="#families">Component Families</a>
         <a class="button button-secondary" href="../README.md">README</a>
+        <a class="button button-secondary" href="notion-migration-architecture.md">Catalog &amp; Roadmap</a>
       </div>
     </header>
 
@@ -55,8 +55,8 @@
 
       <section id="families" class="section-block">
         <div class="section-heading">
-          <p class="section-kicker">Implemented</p>
-          <h2>Current Component Families</h2>
+          <p class="section-kicker">Product Surface</p>
+          <h2>Component Families</h2>
         </div>
         <div class="family-grid">
           <article class="family-card">
@@ -97,11 +97,11 @@
           <article class="family-card">
             <h3>Mutalisk / Display</h3>
             <ul>
-            <li>PaletteEngine</li>
-            <li>Color by Branch</li>
-            <li>Preview Color by Value</li>
-            <li>PaletteEngine Harness</li>
-          </ul>
+              <li>PaletteEngine</li>
+              <li>Color by Branch</li>
+              <li>Preview Color by Value</li>
+              <li>PaletteEngine Harness</li>
+            </ul>
           </article>
 
           <article class="family-card">
@@ -151,140 +151,51 @@
 
       <section class="section-block">
         <div class="section-heading">
-          <p class="section-kicker">Behavior</p>
-          <h2>Current Grasshopper Notes</h2>
+          <p class="section-kicker">Highlights</p>
+          <h2>What Defines The Toolset</h2>
         </div>
         <div class="notes-grid">
           <article class="note-card">
-            <h3>Display Preview</h3>
+            <h3>Deterministic Display</h3>
             <p>
-              <code>Color by Branch</code> and <code>Preview Color by Value</code> both generate
-              colors and also preview compatible geometry using those colors directly in the viewport.
+              <code>PaletteEngine</code>, <code>Color by Branch</code>, and
+              <code>Preview Color by Value</code> share the same seed-driven color logic for stable,
+              repeatable viewport communication.
             </p>
           </article>
           <article class="note-card">
-            <h3>Grouped Value Preview</h3>
+            <h3>Parallel Stream Workflows</h3>
             <p>
-              <code>Preview Color by Value</code> keeps all paired items, groups geometry
-              by distinct value, outputs branched geometry and value trees, and emits one color per branch.
+              Components such as <code>RegEx Cull</code>, <code>Branch by Member</code>, and
+              <code>Cull ENF</code> support zoomable <code>||</code> lane expansion for multi-stream use.
             </p>
           </article>
           <article class="note-card">
-            <h3>Palette Utility</h3>
+            <h3>Flexible Geometry Helpers</h3>
             <p>
-              <code>PaletteEngine</code> now exposes the shared grouped palette logic directly, returning aligned colors,
-              RGB strings, distinct labels, and grouped branch palettes from the same seed-driven engine used elsewhere.
+              The geometry family includes point rounding, rectangle evaluation, orientation analysis,
+              offset selection, and extension-trim logic tuned for practical modeling workflows.
             </p>
           </article>
           <article class="note-card">
-            <h3>Palette Harness</h3>
+            <h3>Rhino + Revit Reach</h3>
             <p>
-              <code>PaletteEngine Harness</code> emits aligned sample geometry, sample values, and canned settings so the
-              full display chain can be tested at larger counts without assembling helper definitions by hand.
+              MutaliskGH includes native Rhino helpers as well as Rhino.Inside.Revit query and automation
+              components for mixed-environment projects.
             </p>
           </article>
           <article class="note-card">
-            <h3>Seed Naming</h3>
+            <h3>Trigger-Safe Automation</h3>
             <p>
-              Both display components use <code>S</code> as the seed input so their IO conventions stay aligned.
+              Side-effect tools such as rename, zoom, and export operations are gated behind explicit
+              trigger inputs so they behave like deliberate actions instead of passive solve-time effects.
             </p>
           </article>
           <article class="note-card">
-            <h3>ZUI Lanes</h3>
+            <h3>Shared Core Logic</h3>
             <p>
-              <code>RegEx Cull</code>, <code>Branch by Member</code>, and <code>Cull ENF</code>
-              support zoomable <code>||</code> lane expansion for parallel streams.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Regex Cull Fallback</h3>
-            <p>
-              <code>RegEx Cull</code> now still evaluates when only <code>L</code> and <code>Re</code> are connected.
-              If no explicit primary <code>||</code> stream is supplied, the main filtered stream falls back to the test list.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Formatting Controls</h3>
-            <p>
-              <code>Find Next Available Code</code> supports patterns such as <code>{000###}</code>,
-              and <code>Round Points</code> uses <code>Factor (F)</code> for coordinate rounding.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Geometry Modes</h3>
-            <p>
-              <code>Oriented Bounding Box</code> exposes clustered, mean, and length-weighted
-              direction strategies through <code>Method (M)</code>.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Extend And Trim</h3>
-            <p>
-              <code>Extend and Trim Curves</code> always returns extended curves, even when no trim occurs,
-              and uses <code>Trim Single (T)</code> to control how single-hit intersections are handled.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Rectangle Ordering</h3>
-            <p>
-              <code>Rebuild Rectangle</code> preserves source geometry and returns vertices ordered
-              bottom-left, top-left, top-right, bottom-right.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Rhino Selection</h3>
-            <p>
-              <code>Reference Selected</code> stores chosen Rhino object IDs, and <code>SelValue</code>
-              accepts a list of strings and runs one Rhino selection command per value on a rising-edge trigger.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Rhino Metadata</h3>
-            <p>
-              <code>Get Group Membership</code> accepts referenced Rhino geometry or GUIDs and returns group-name trees,
-              while <code>Get Layertable</code> returns active Rhino layer full paths directly from the document.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>AutoCAD Bridge</h3>
-            <p>
-              <code>Open ACAD File RO</code> validates a DWG path, reuses a running AutoCAD instance when possible,
-              and opens the file read-only on a rising-edge trigger.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Revit Query</h3>
-            <p>
-              <code>Get Parent Element</code>, <code>Spot Elevation Reference</code>, <code>Match Filter Elements</code>,
-              <code>View Range Brep</code>, and <code>Element Material Map</code> use reflection-based runtime access so they
-              can work against Rhino.Inside.Revit objects without adding hard compile-time Revit API dependencies.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Revit Goo Output</h3>
-            <p>
-              <code>Get Parent Element</code> and <code>Spot Elevation Reference</code> now emit Rhino.Inside.Revit-native
-              Grasshopper goo when those GH types are available.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Revit Automation</h3>
-            <p>
-              <code>Rename Views</code>, <code>Zoom Element</code>, <code>Revit Views to PDF</code>, and
-              <code>Revit Views to DWG</code> are trigger-driven automation helpers rather than always-live solve actions.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Workflow Boundary</h3>
-            <p>
-              <code>Batch Revit-to-NWC Export</code> is still being treated as a workflow candidate rather than a compiled component.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Plugin Icon</h3>
-            <p>
-              The plugin now registers a dedicated <code>Mutalisk</code> category icon at Grasshopper load time instead of
-              relying only on assembly metadata.
+              Core behavior lives in <code>MutaliskGH.Core</code>, making the plugin easier to test,
+              maintain, and extend without depending on Grasshopper solve state for every change.
             </p>
           </article>
         </div>
@@ -293,20 +204,20 @@
       <section class="section-block">
         <div class="section-heading">
           <p class="section-kicker">Structure</p>
-          <h2>Shared Project Layout</h2>
+          <h2>Project Layout</h2>
         </div>
         <div class="framework-grid">
           <article class="framework-card">
             <h3>MutaliskGH</h3>
-            <p>Grasshopper wrappers, framework classes, component UI, and viewport preview behavior.</p>
+            <p>Grasshopper wrappers, icons, UI behavior, and viewport-preview integration.</p>
           </article>
           <article class="framework-card">
             <h3>MutaliskGH.Core</h3>
-            <p>Pure reusable logic for text, data-tree manipulation, formatting, display color generation, and geometry helpers.</p>
+            <p>Reusable logic for text, data trees, formatting, display, geometry, Rhino, and Revit helpers.</p>
           </article>
           <article class="framework-card">
             <h3>MutaliskGH.Tests</h3>
-            <p>Fast logic tests used to validate behavior before interactive Grasshopper checks.</p>
+            <p>Fast regression coverage for behavior that should stay stable across component updates.</p>
           </article>
         </div>
       </section>
@@ -314,28 +225,24 @@
       <section class="section-block links-block">
         <div class="section-heading">
           <p class="section-kicker">References</p>
-          <h2>Docs and Planning Links</h2>
+          <h2>Documentation</h2>
         </div>
         <div class="link-list">
           <a class="link-card" href="../README.md">
             <span class="link-title">README</span>
-            <span class="link-copy">Overview, build commands, implemented families, and current controls.</span>
+            <span class="link-copy">Overview, families, structure, and build/test entry points.</span>
           </a>
           <a class="link-card" href="notion-migration-architecture.md">
-            <span class="link-title">Migration Architecture Memo</span>
-            <span class="link-copy">Family grouping, MVP planning, migration order, and workflow boundaries.</span>
+            <span class="link-title">Component Catalog &amp; Roadmap</span>
+            <span class="link-copy">Family grouping, scope boundaries, and the remaining roadmap.</span>
           </a>
           <a class="link-card" href="palette-engine.md">
             <span class="link-title">PaletteEngine Guide</span>
-            <span class="link-copy">Short usage notes, sample value lists, and output structure for PaletteEngine.</span>
+            <span class="link-copy">Usage notes, sample value lists, and output structure for palette workflows.</span>
           </a>
           <a class="link-card" href="revit-planning.md">
-            <span class="link-title">Revit Planning Notes</span>
-            <span class="link-copy">Current Rhino.Inside.Revit packaging notes, risks, and likely upgrade path.</span>
-          </a>
-          <a class="link-card" href="https://github.com/shapediver/GrasshopperPluginTemplate">
-            <span class="link-title">ShapeDiver Plugin Template</span>
-            <span class="link-copy">Reference template for Grasshopper and Rhino plugin structure.</span>
+            <span class="link-title">Revit Integration Notes</span>
+            <span class="link-copy">Current packaging constraints, runtime strategy, and future integration path.</span>
           </a>
         </div>
       </section>

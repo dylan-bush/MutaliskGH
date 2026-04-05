@@ -1,15 +1,31 @@
-# PaletteEngine
+# PaletteEngine Guide
 
-`PaletteEngine` generates deterministic grouped palette colors from a list of values.
+`PaletteEngine` is MutaliskGH's deterministic grouped-color engine for Grasshopper. It takes an ordered list of values and returns related-but-distinct colors that stay stable for the same inputs and seed.
 
-## What It Expects
+## What It Does
 
-- `Values (V)` is a flat list.
-- Values do not need to be text only.
-- Repeated values form one color family.
-- Distinct values keep first-occurrence order.
+- Groups repeated values into the same color family
+- Preserves first-occurrence group order
+- Produces aligned colors for every input item
+- Produces grouped palettes for downstream branch-based preview workflows
+- Uses a seed so palettes can be re-shuffled deterministically without changing the underlying value grouping
 
-Examples of valid `Values` lists:
+## Typical Inputs
+
+- `Values (V)`
+  A flat list of labels, numbers, booleans, or mixed values
+- `Strength (Str)`
+  Controls variation inside each group
+- `Seed (S)`
+  Deterministic palette shuffle control
+- `Overdrive (O)`
+  Pushes stronger separation
+- `Min Saturation (MinSat)`
+  Saturation floor from `0..1`
+- `Saturation Boost (SatB)`
+  Additional saturation bias from `0..1`
+
+## Value List Examples
 
 ```text
 ["A", "B", "A", "C", "B", "A"]
@@ -23,23 +39,16 @@ Examples of valid `Values` lists:
 ["Zone A", 101, false, 101, "Zone B", false]
 ```
 
-## Inputs
+## Output Structure
 
-- `Values (V)`: list of labels or values to group by
-- `Strength (Str)`: color variation within each group
-  - `0..1` = normal
-  - `>1` = stronger variation
-- `Seed (S)`: deterministic shuffle control for group hues
-- `Overdrive (O)`: pushes stronger separation
-- `Min Saturation (MinSat)`: minimum saturation floor in `0..1`
-- `Saturation Boost (SatB)`: extra saturation boost in `0..1`
-
-## Outputs
-
-- `Colors (Col)`: colors aligned to the input order
-- `RGB`: aligned RGB strings in `r,g,b` format
-- `Set`: distinct values in first-occurrence order
-- `Group Colors (Grp)`: one branch per distinct value, containing that group palette
+- `Colors (Col)`
+  One color per input item, aligned to the original order
+- `RGB`
+  The same colors as `r,g,b` strings
+- `Set`
+  Distinct values in first-occurrence order
+- `Group Colors (Grp)`
+  One branch per distinct value, containing that group's palette
 
 ## Example
 
@@ -65,11 +74,10 @@ Group Colors:
 {2} -> C palette
 ```
 
-## Notes
+## Behavior Notes
 
-- Same values plus same seed will always return the same palette.
-- Changing only `Seed (S)` reshuffles group hues deterministically.
-- Duplicates do not reuse exactly the same color; they vary within the same group family.
-- Use `PaletteEngine Harness` for quick on-canvas sample data, aligned sample geometry, and default settings.
-- The harness now includes `Count (C)`, so you can request larger sample sets such as `48`, `96`, or more when evaluating palette separation.
-- The harness geometry stays aligned 1:1 with the expanded value list, so it can be wired directly into `Preview Color by Value` for downstream preview checks.
+- The same value and seed combination will always produce the same grouped palette.
+- Duplicate values stay in the same hue family, but they do not all collapse to one identical color.
+- Changing only `Seed (S)` re-shuffles group hues deterministically.
+- `PaletteEngine Harness` is the quickest way to generate large sample sets for evaluation.
+- The harness emits geometry aligned `1:1` with the value list, so it can feed directly into `Preview Color by Value` for full display-chain testing.

@@ -1,6 +1,6 @@
-# Revit Planning Notes
+# Revit Integration Notes
 
-This note captures the current Revit-specific implementation direction for `MutaliskGH` and the constraints we should keep in mind as the `Mutalisk / Revit Query` family grows.
+This note captures the current Revit-specific product direction for `MutaliskGH` and the constraints that matter as the `Mutalisk / Revit Query` and `Mutalisk / Revit Automation` families grow.
 
 ## Current Decision
 
@@ -8,11 +8,11 @@ This note captures the current Revit-specific implementation direction for `Muta
 - Continue implementing the first Revit components inside the existing plugin/codebase.
 - Use the current reflection-based runtime access approach as the short-term path of least resistance.
 
-## Why We Are Doing That
+## Why This Direction Makes Sense
 
 - It lets us keep momentum without immediately restructuring the plugin into separate Rhino-only and Revit-only assemblies.
 - It avoids adding hard compile-time Revit references before the Revit slice is large enough to justify the packaging work.
-- It keeps the first migration passes testable with fake-object logic tests in `MutaliskGH.Tests`.
+- It keeps the first implementation passes testable with fake-object logic tests in `MutaliskGH.Tests`.
 
 ## Rhino.Inside.Revit Findings
 
@@ -45,7 +45,7 @@ The Rhino.Inside.Revit docs recommend Revit-only plugin deployment under:
 
 This matters because Revit-dependent plugins may fail to load in standalone Rhino if they are deployed like a normal Grasshopper plugin.
 
-## Current Risk
+## Current Risks
 
 With the current single-plugin structure:
 
@@ -87,7 +87,7 @@ These currently use reflection-based runtime inspection and fake-object unit tes
 
 ## Current Automation Direction
 
-- Some Revit automation tools are now compiled despite the original migration memo preferring workflows first.
+- Some Revit automation tools are now compiled despite the original roadmap preferring workflows first.
 - The current mitigation is behavioral, not architectural:
   - all compiled automation tools are gated behind rising-edge `Run` triggers
   - exports and rename actions do not fire on every solve

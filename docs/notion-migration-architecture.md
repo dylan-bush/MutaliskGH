@@ -1,8 +1,8 @@
-# Mutalisk Notion Migration Architecture
+# MutaliskGH Component Catalog And Roadmap
 
 ## Purpose
 
-This memo translates the Notion export at `C:\Users\bushd\Downloads\GH Library Database Notion Export` into a practical migration structure for a single mixed Grasshopper plugin with top-level category `Mutalisk`.
+This document organizes the broader Mutalisk component library into a clear product catalog and delivery roadmap for the compiled Grasshopper plugin. It uses the Notion export at `C:\Users\bushd\Downloads\GH Library Database Notion Export` as the source inventory, while presenting the result as one coherent toolset under the `Mutalisk` tab.
 
 The export was validated against:
 
@@ -10,14 +10,14 @@ The export was validated against:
 - representative page exports for `Text Match Multiple`, `Branch by Member`, `RiR_ViewRangeBrep`, `Open ACAD File RO`, and `Batch Revit-to-NWC Export`
 - the ShapeDiver Grasshopper/Rhino plugin template at `https://github.com/shapediver/GrasshopperPluginTemplate` for plugin-layout best-practice reference
 
-This memo assumes the plugin will eventually follow the same broad separation of concerns used in the template:
+The roadmap assumes the plugin will continue following the same broad separation of concerns used in the template:
 
 - shared pure logic helpers
 - Rhino/Grasshopper adapters
 - Revit/Rhino.Inside adapters
 - tests around the shared layers first
 
-## Current Implementation Status
+## Current Product Surface
 
 The repo has now moved beyond the original MVP baseline and currently includes these compiled families and slices:
 
@@ -61,7 +61,7 @@ Recent display and Rhino-specific progress:
 - included components: `Cull Empty Null or False Branches`, `Return Duplicate Index`, `Return Duplicate Quantity`, `Test Null or Text-Length-0`, `Branch by Member`, `Partition Branches`, `Integer Series`
 - shared logic/core helpers: branch traversal, duplicate detection, boolean/null filtering, tree/list index mapping, series generation
 - suggested plugin category/subcategory: `Mutalisk / Data`
-- recommended migration order: `1`
+- recommended delivery order: `1`
 - which tools remain workflows/scripts: `None`
 - MVP membership: `Cull Empty Null or False Branches`, `Return Duplicate Index`, `Return Duplicate Quantity`, `Test Null or Text-Length-0`, `Branch by Member`
 - rationale: dependency depth is low, side-effect risk is low, and helper reuse is high across later text, display, and geometry work
@@ -72,7 +72,7 @@ Recent display and Rhino-specific progress:
 - included components: `RegEx Escape`, `Basic Strip`, `RegEx Text Replace`, `Text Match Multiple`, `Multiple RegEx Index`, `RegEx Cull`
 - shared logic/core helpers: text normalization, regex pattern compilation and caching, exact-vs-raw match mode, index/result-set helpers
 - suggested plugin category/subcategory: `Mutalisk / Text`
-- recommended migration order: `2`
+- recommended delivery order: `2`
 - which tools remain workflows/scripts: `None`
 - MVP membership: `RegEx Escape`, `Text Match Multiple`, `RegEx Cull`
 - rationale: dependency depth is low, side-effect risk is low, and helper reuse is high for data filtering and formatting components
@@ -83,7 +83,7 @@ Recent display and Rhino-specific progress:
 - included components: `Decimal In to Fractional Ft In`, `Find Next Available Code`, `Serialize Plane`, `Deserialize Plane`
 - shared logic/core helpers: string formatting, code incrementation, plane serialization/parsing, validation and fallback parsing
 - suggested plugin category/subcategory: `Mutalisk / Format`
-- recommended migration order: `2`
+- recommended delivery order: `2`
 - which tools remain workflows/scripts: `None`
 - MVP membership: `Decimal In to Fractional Ft In`, `Serialize Plane`, `Deserialize Plane`
 - rationale: dependency depth is low, side-effect risk is low, and helper reuse is high for user-facing formatting, serialization, and code-generation flows
@@ -94,10 +94,10 @@ Recent display and Rhino-specific progress:
 - included components: `Oriented Bounding Box`, `Offset Select`, `Rebuild Rectangle`, `Round Points`, `Extend and Trim Curves`
 - shared logic/core helpers: tolerance handling, plane/box utilities, curve extension and trim wrappers, point rounding helpers
 - suggested plugin category/subcategory: `Mutalisk / Geometry`
-- recommended migration order: `3`
+- recommended delivery order: `3`
 - which tools remain workflows/scripts: `None`
 - MVP membership: `Round Points`, `Rebuild Rectangle`
-- rationale: dependency depth is moderate, side-effect risk is low, and helper reuse is good, but a few components need stronger geometry abstractions before migration
+- rationale: dependency depth is moderate, side-effect risk is low, and helper reuse is good, but a few components need stronger geometry abstractions before delivery
 
 ### Family 5
 
@@ -105,7 +105,7 @@ Recent display and Rhino-specific progress:
 - included components: `Reference Selected`, `SelValue`, `Get Group Membership`, `Get Layertable`, `Open ACAD File RO`
 - shared logic/core helpers: Rhino document access, selection lookup, object/group/layer query wrappers, file and application guards
 - suggested plugin category/subcategory: `Mutalisk / Rhino`
-- recommended migration order: `4`
+- recommended delivery order: `4`
 - which tools remain workflows/scripts: `None`
 - MVP membership: `None`
 - rationale: dependency depth is moderate because these depend on Rhino context, side-effect risk is mixed, and helper reuse is good once document adapters exist
@@ -116,7 +116,7 @@ Recent display and Rhino-specific progress:
 - included components: `PaletteEngine`, `Color by Branch`, `Preview Color by Value`
 - shared logic/core helpers: palette interpolation, value-to-color mapping, preview material and attribute adapters
 - suggested plugin category/subcategory: `Mutalisk / Display`
-- recommended migration order: `4`
+- recommended delivery order: `4`
 - which tools remain workflows/scripts: `None`
 - MVP membership: `Color by Branch`, `Preview Color by Value`
 - rationale: dependency depth is moderate, side-effect risk is low, and helper reuse is strong once core data and color-mapping utilities are in place
@@ -127,7 +127,7 @@ Recent display and Rhino-specific progress:
 - included components: `RiR_ViewRangeBrep`, `RiR_GetParentElement`, `RiR_SpotElevationReference`, `RiR_MatchFilterElements`, `RiR_ElementMaterialMap-2023`, `RiR_ElementMaterialMap-2025`
 - shared logic/core helpers: Rhino.Inside session guard, Revit element and view adapters, geometry extraction helpers, version-specific API shims
 - suggested plugin category/subcategory: `Mutalisk / Revit Query`, `Mutalisk / Revit Geometry`
-- recommended migration order: `5`
+- recommended delivery order: `5`
 - which tools remain workflows/scripts: `None by default`
 - MVP membership: `None`
 - rationale: dependency depth is high because of Rhino.Inside and Revit API requirements, side-effect risk is lower than automation work, and helper reuse is high inside the Revit slice once the session and adapter layers exist
@@ -147,14 +147,14 @@ Current repo note:
 - included components: `RiR_RevitViewsToDWG`, `RiR_RevitViewsToPDF`, `RiR_Rename Views`, `RiR_ZoomElement`, `Batch Revit-to-NWC Export`
 - shared logic/core helpers: transaction runner, export path and file naming policy, batch reporting, host-state validation, UI-side-effect wrappers
 - suggested plugin category/subcategory: `Mutalisk / Revit Automation`
-- recommended migration order: `6`
+- recommended delivery order: `6`
 - which tools remain workflows/scripts: `RiR_RevitViewsToDWG`, `RiR_RevitViewsToPDF`, `RiR_Rename Views`, `RiR_ZoomElement`, `Batch Revit-to-NWC Export`
 - MVP membership: `None`
 - rationale: dependency depth is highest, side-effect risk is highest, and helper reuse is real but mainly valuable after the Revit query and host-control layers are already stable
 
-## Proposed MVP Batch
+## Product Baseline
 
-The MVP optimizes for broad utility coverage, shared helper creation, and minimal external dependency risk.
+This baseline emphasizes broad utility coverage, shared helper creation, and minimal external dependency risk.
 
 - `RegEx Escape`
 - `Text Match Multiple`
@@ -180,7 +180,7 @@ Explicit MVP exclusions:
 - `RiR_ElementMaterialMap-2023`
 - `RiR_ElementMaterialMap-2025`
 
-## Execution Slice 1
+## Initial Delivery Slice
 
 The first implementation family is locked to `Mutalisk / Text`.
 
@@ -190,14 +190,14 @@ The first implementation family is locked to `Mutalisk / Text`.
 - preferred golden component for step 4: `RegEx Escape`
 - step 3 scaffold only: `BaseComponent`, `CategoryNames`, `Result<T>`, `IconLoader`
 
-## Migration Sequence
+## Delivery Sequence
 
-1. Build shared data-tree, index, and duplicate helpers under `Mutalisk / Data`
-2. Build shared text and serialization helpers under `Mutalisk / Text` and `Mutalisk / Format`
-3. Add low-risk geometry wrappers under `Mutalisk / Geometry`
-4. Add Rhino document adapters and display helpers under `Mutalisk / Rhino` and `Mutalisk / Display`
+1. Establish shared data-tree, index, and duplicate helpers under `Mutalisk / Data`
+2. Establish shared text and serialization helpers under `Mutalisk / Text` and `Mutalisk / Format`
+3. Add low-risk geometry components under `Mutalisk / Geometry`
+4. Add Rhino document adapters and display components under `Mutalisk / Rhino` and `Mutalisk / Display`
 5. Add Revit session guards, adapters, and query components under `Mutalisk / Revit Query`
-6. Revisit automation-heavy Revit exports and host-control tasks as workflows first, not compiled components
+6. Revisit automation-heavy Revit exports and host-control tasks as workflow-oriented tools where appropriate
 
 ## Validation
 
@@ -231,6 +231,6 @@ Current repo note:
 ### Assumptions
 
 - top-level category remains `Mutalisk`
-- one mixed plugin is acceptable, but Revit work stays late in the migration order
+- one mixed plugin is acceptable, but Revit work stays late in the delivery order
 - the eventual codebase should split shared logic from Grasshopper, Rhino, and Revit integration layers in line with the ShapeDiver template style
 - if future page-export review reveals the two `Text Match Multiple` exports are materially different, split them at implementation time, not in this grouping memo
