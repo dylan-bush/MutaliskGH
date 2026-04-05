@@ -83,5 +83,34 @@ namespace MutaliskGH.Tests
 
             Assert.Equal(new[] { "A", "B::C" }, result.ToArray());
         }
+
+        [Fact]
+        public void ValidateDwgPath_RejectsMissingFile()
+        {
+            var result = OpenAcadFileLogic.ValidateDwgPath(@"C:\definitely-missing-file.dwg");
+
+            Assert.False(result.IsSuccess);
+            Assert.Equal(OpenAcadFileLogic.StatusFileNotFound, result.ErrorMessage);
+        }
+
+        [Fact]
+        public void ValidateDwgPath_RejectsWrongExtension()
+        {
+            string tempPath = System.IO.Path.GetTempFileName();
+            try
+            {
+                var result = OpenAcadFileLogic.ValidateDwgPath(tempPath);
+
+                Assert.False(result.IsSuccess);
+                Assert.Equal(OpenAcadFileLogic.StatusInvalidType, result.ErrorMessage);
+            }
+            finally
+            {
+                if (System.IO.File.Exists(tempPath))
+                {
+                    System.IO.File.Delete(tempPath);
+                }
+            }
+        }
     }
 }

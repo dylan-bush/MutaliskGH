@@ -4,7 +4,6 @@ using MutaliskGH.Core;
 using MutaliskGH.Core.Revit;
 using MutaliskGH.Framework;
 using System;
-using System.Collections.Generic;
 
 namespace MutaliskGH.Components.Revit
 {
@@ -91,31 +90,12 @@ namespace MutaliskGH.Components.Revit
                 return;
             }
 
-            dataAccess.SetData(0, Wrap(result.Value.Parent));
-            dataAccess.SetData(1, Wrap(result.Value.ParentType));
-            dataAccess.SetData(2, Wrap(result.Value.ParentFamily));
-            dataAccess.SetDataList(3, WrapAll(result.Value.Hierarchy));
+            dataAccess.SetData(0, RevitGrasshopperWrapper.WrapElement(result.Value.Parent));
+            dataAccess.SetData(1, RevitGrasshopperWrapper.WrapElement(result.Value.ParentType));
+            dataAccess.SetData(2, RevitGrasshopperWrapper.WrapElement(result.Value.ParentFamily));
+            dataAccess.SetDataList(3, RevitGrasshopperWrapper.WrapElements(result.Value.Hierarchy));
             dataAccess.SetDataList(4, result.Value.RelationshipTypes);
             dataAccess.SetData(5, string.Empty);
-        }
-
-        private static GH_ObjectWrapper Wrap(object value)
-        {
-            return value == null ? null : new GH_ObjectWrapper(value);
-        }
-
-        private static List<GH_ObjectWrapper> WrapAll(IReadOnlyList<object> values)
-        {
-            var wrappedValues = new List<GH_ObjectWrapper>(values.Count);
-            for (int index = 0; index < values.Count; index++)
-            {
-                if (values[index] != null)
-                {
-                    wrappedValues.Add(new GH_ObjectWrapper(values[index]));
-                }
-            }
-
-            return wrappedValues;
         }
     }
 }

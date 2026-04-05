@@ -8,7 +8,7 @@ namespace MutaliskGH
     {
         public override GH_LoadingInstruction PriorityLoad()
         {
-            var icon = IconLoader.Load("MutaliskGH.png");
+            var icon = IconLoader.Load("MutaliskGH-1COL.png");
             if (icon != null)
             {
                 Instances.ComponentServer.AddCategoryIcon(CategoryNames.Plugin, icon);

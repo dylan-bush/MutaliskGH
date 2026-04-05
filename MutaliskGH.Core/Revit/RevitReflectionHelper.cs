@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace MutaliskGH.Core.Revit
 {
-    internal static class RevitReflectionHelper
+    public static class RevitReflectionHelper
     {
         public static object GetPropertyValue(object target, string propertyName)
         {
@@ -110,6 +111,55 @@ namespace MutaliskGH.Core.Revit
         public static bool TypeNameEquals(object value, string name)
         {
             return value != null && string.Equals(value.GetType().Name, name, StringComparison.Ordinal);
+        }
+
+        public static object GetStaticPropertyValue(string assemblySimpleName, string typeName, string propertyName)
+        {
+            Assembly assembly = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .FirstOrDefault(candidate =>
+                    string.Equals(candidate.GetName().Name, assemblySimpleName, StringComparison.Ordinal));
+
+            if (assembly == null)
+            {
+                try
+                {
+                    assembly = Assembly.Load(assemblySimpleName);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            Type type = assembly.GetType(typeName, false, false);
+            PropertyInfo property = type == null
+                ? null
+                : type.GetProperty(propertyName, BindingFlags.Static | BindingFlags.Public);
+            return property == null ? null : property.GetValue(null, null);
+        }
+
+        public static object ParseEnumArgument(Assembly assembly, string typeName, string memberName)
+        {
+            if (assembly == null || string.IsNullOrWhiteSpace(typeName) || string.IsNullOrWhiteSpace(memberName))
+            {
+                return null;
+            }
+
+            Type type = assembly.GetType(typeName, false, false);
+            if (type == null || !type.IsEnum)
+            {
+                return null;
+            }
+
+            try
+            {
+                return Enum.Parse(type, memberName, ignoreCase: false);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

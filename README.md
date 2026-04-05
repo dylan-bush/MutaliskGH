@@ -4,7 +4,7 @@
   <img src="MutaliskGH/Resources/Icons/MutaliskGH.png" alt="MutaliskGH header art" width="320">
 </p>
 
-MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library of custom utility components, tree tools, text tools, preview tools, geometry tools, Rhino-interaction helpers, and Revit query tools into a maintainable C# codebase. The repo now contains the migration architecture memo, a reusable plugin framework, a shared pure-logic core library, an automated test project, and the implemented `Mutalisk / Text`, `Mutalisk / Data`, `Mutalisk / Format`, `Mutalisk / Display`, `Mutalisk / Geometry`, `Mutalisk / Rhino`, and first `Mutalisk / Revit Query` slices.
+MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-documented library of custom utility components, tree tools, text tools, preview tools, geometry tools, Rhino-interaction helpers, and Rhino.Inside.Revit tools into a maintainable C# codebase. The repo now contains the migration architecture memo, a reusable plugin framework, a shared pure-logic core library, an automated test project, and the implemented `Mutalisk / Text`, `Mutalisk / Data`, `Mutalisk / Format`, `Mutalisk / Display`, `Mutalisk / Geometry`, `Mutalisk / Rhino`, `Mutalisk / Revit Query`, and first `Mutalisk / Revit Automation` slices.
 
 ## Features
 
@@ -47,9 +47,18 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
   - `SelValue`
   - `Get Group Membership`
   - `Get Layertable`
+  - `Open ACAD File RO`
 - Implemented `Mutalisk / Revit Query` components:
   - `Get Parent Element`
   - `Spot Elevation Reference`
+  - `Match Filter Elements`
+  - `View Range Brep`
+  - `Element Material Map`
+- Implemented `Mutalisk / Revit Automation` components:
+  - `Rename Views`
+  - `Zoom Element`
+  - `Revit Views to PDF`
+  - `Revit Views to DWG`
 - ZUI-expandable parallel stream support on components that need it, including `RegEx Cull`, `Branch by Member`, and `Cull ENF`
 - Flexible code-format search support in `Find Next Available Code`, including original-style fixed slots via patterns like `{000###}`
 - Multiple orientation strategies in `Oriented Bounding Box`, including clustered edge directions, mean direction, and length-weighted mean
@@ -69,7 +78,7 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
 
 ## Controls
 
-- Grasshopper components appear under the `Mutalisk` tab and currently populate the `Text`, `Data`, `Format`, `Display`, `Geometry`, `Rhino`, and `Revit Query` subcategories.
+- Grasshopper components appear under the `Mutalisk` tab and currently populate the `Text`, `Data`, `Format`, `Display`, `Geometry`, `Rhino`, `Revit Query`, and `Revit Automation` subcategories.
 - Components that use ZUI can be expanded with Grasshopper zoom controls to add additional `||` lanes.
 - `RegEx Cull` now still computes when only `L` and `Re` are connected; the main `||` output falls back to the test list when no explicit primary parallel stream is supplied.
 - `Partition Branches` uses a branch-selection pattern in `P`; flat and grafted pattern inputs are both supported when they provide one decision per branch.
@@ -84,8 +93,11 @@ MutaliskGH is a compiled Grasshopper plugin for migrating a curated Notion-docum
 - `Offset Select` returns the selected offset curve or ordered pair of offset curves through `Selected Offset (O)`.
 - `Extend and Trim Curves` outputs extended curves even when no trim occurs and supports `Trim Single (T)` to control single-hit trimming behavior.
 - `Reference Selected` stores the last chosen Rhino object IDs until triggered again, `SelValue` accepts a list of strings and runs one Rhino selection command per value on a rising-edge toggle, `Get Group Membership` accepts either referenced Rhino geometry or GUIDs, and `Get Layertable` returns active Rhino layer full paths.
-- `Get Parent Element` and `Spot Elevation Reference` are reflection-based Revit query wrappers intended for Rhino.Inside.Revit runtime objects without adding hard compile-time Revit API references to the plugin project.
-- Host-side-effect tools such as file-open and Revit export workflows are still expected to remain script or workflow driven unless explicitly migrated later.
+- `Open ACAD File RO` validates a `.dwg` path, reuses a running AutoCAD instance when possible, and opens the file read-only on a rising-edge trigger.
+- `Get Parent Element`, `Spot Elevation Reference`, `Match Filter Elements`, `View Range Brep`, and `Element Material Map` are reflection-based Revit wrappers intended for Rhino.Inside.Revit runtime objects without adding hard compile-time Revit API references to the plugin project.
+- `Get Parent Element` and `Spot Elevation Reference` now emit RiR-native Grasshopper goo when Rhino.Inside.Revit GH types are available, so their outputs can feed downstream RiR components directly.
+- `Rename Views`, `Zoom Element`, `Revit Views to PDF`, and `Revit Views to DWG` are compiled but intentionally gated behind rising-edge `Run` inputs so they behave as deliberate automation actions instead of firing on every solve.
+- `Batch Revit-to-NWC Export` is still being treated as a workflow candidate rather than a compiled component.
 
 ## Documentation Site
 

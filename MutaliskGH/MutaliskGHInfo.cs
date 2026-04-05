@@ -11,7 +11,7 @@ namespace MutaliskGH
         public override string Name => "MutaliskGH";
 
         //Return a 24x24 pixel bitmap to represent this GHA library.
-        public override Bitmap Icon => IconLoader.Load("MutaliskGH.png");
+        public override Bitmap Icon => IconLoader.Load("MutaliskGH-1COL.png");
 
         //Return a short string describing the purpose of this GHA library.
         public override string Description => "";

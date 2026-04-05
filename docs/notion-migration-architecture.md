@@ -106,7 +106,7 @@ Recent display and Rhino-specific progress:
 - shared logic/core helpers: Rhino document access, selection lookup, object/group/layer query wrappers, file and application guards
 - suggested plugin category/subcategory: `Mutalisk / Rhino`
 - recommended migration order: `4`
-- which tools remain workflows/scripts: `Open ACAD File RO`
+- which tools remain workflows/scripts: `None`
 - MVP membership: `None`
 - rationale: dependency depth is moderate because these depend on Rhino context, side-effect risk is mixed, and helper reuse is good once document adapters exist
 
@@ -136,6 +136,10 @@ Compatibility note for material maps:
 
 - `RiR_ElementMaterialMap-2023` and `RiR_ElementMaterialMap-2025` should share one abstraction and one family owner
 - keep separate compatibility notes and API shims, not separate architectural families
+
+Current repo note:
+
+- the repo now implements this as one consolidated `Element Material Map` component rather than separate 2023 and 2025 user-facing components
 
 ### Family 8
 
@@ -218,6 +222,11 @@ Workflow or script recommendations are justified by side effects:
 - `RiR_RevitViewsToDWG` and `RiR_RevitViewsToPDF` are file-export tasks with external side effects
 - `RiR_Rename Views` and `RiR_ZoomElement` directly modify or control the Revit host environment
 - `Open ACAD File RO` opens and coordinates an external AutoCAD instance and therefore behaves more like a workflow bridge than a pure Grasshopper utility component
+
+Current repo note:
+
+- despite the original recommendation, the repo now includes compiled wrappers for `RiR_RevitViewsToDWG`, `RiR_RevitViewsToPDF`, `RiR_Rename Views`, `RiR_ZoomElement`, and `Open ACAD File RO`
+- the current mitigation is to keep all of them explicitly trigger-driven so they act as deliberate workflow helpers rather than always-live utility nodes
 
 ### Assumptions
 

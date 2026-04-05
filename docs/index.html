@@ -28,7 +28,7 @@
           <p class="hero-panel-label">Current Scope</p>
           <ul class="hero-list">
             <li>Text, Data, Format, Display, Geometry, and Rhino metadata/selection slices implemented</li>
-            <li>First Revit Query slice implemented</li>
+            <li>Revit Query and first Revit Automation slices implemented</li>
             <li>Pure logic in <code>MutaliskGH.Core</code></li>
             <li>Fast regression coverage in <code>MutaliskGH.Tests</code></li>
           </ul>
@@ -122,6 +122,7 @@
               <li>SelValue</li>
               <li>Get Group Membership</li>
               <li>Get Layertable</li>
+              <li>Open ACAD File RO</li>
             </ul>
           </article>
 
@@ -130,6 +131,19 @@
             <ul>
               <li>Get Parent Element</li>
               <li>Spot Elevation Reference</li>
+              <li>Match Filter Elements</li>
+              <li>View Range Brep</li>
+              <li>Element Material Map</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <h3>Mutalisk / Revit Automation</h3>
+            <ul>
+              <li>Rename Views</li>
+              <li>Zoom Element</li>
+              <li>Revit Views to PDF</li>
+              <li>Revit Views to DWG</li>
             </ul>
           </article>
         </div>
@@ -232,10 +246,38 @@
             </p>
           </article>
           <article class="note-card">
+            <h3>AutoCAD Bridge</h3>
+            <p>
+              <code>Open ACAD File RO</code> validates a DWG path, reuses a running AutoCAD instance when possible,
+              and opens the file read-only on a rising-edge trigger.
+            </p>
+          </article>
+          <article class="note-card">
             <h3>Revit Query</h3>
             <p>
-              <code>Get Parent Element</code> and <code>Spot Elevation Reference</code> use reflection-based runtime access
-              so they can work against Rhino.Inside.Revit objects without adding hard compile-time Revit API dependencies.
+              <code>Get Parent Element</code>, <code>Spot Elevation Reference</code>, <code>Match Filter Elements</code>,
+              <code>View Range Brep</code>, and <code>Element Material Map</code> use reflection-based runtime access so they
+              can work against Rhino.Inside.Revit objects without adding hard compile-time Revit API dependencies.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Revit Goo Output</h3>
+            <p>
+              <code>Get Parent Element</code> and <code>Spot Elevation Reference</code> now emit Rhino.Inside.Revit-native
+              Grasshopper goo when those GH types are available.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Revit Automation</h3>
+            <p>
+              <code>Rename Views</code>, <code>Zoom Element</code>, <code>Revit Views to PDF</code>, and
+              <code>Revit Views to DWG</code> are trigger-driven automation helpers rather than always-live solve actions.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Workflow Boundary</h3>
+            <p>
+              <code>Batch Revit-to-NWC Export</code> is still being treated as a workflow candidate rather than a compiled component.
             </p>
           </article>
           <article class="note-card">
@@ -243,12 +285,6 @@
             <p>
               The plugin now registers a dedicated <code>Mutalisk</code> category icon at Grasshopper load time instead of
               relying only on assembly metadata.
-            </p>
-          </article>
-          <article class="note-card">
-            <h3>Workflow Boundary</h3>
-            <p>
-              Revit automation and other host-side-effect-heavy tools remain intentionally outside the current compiled slice.
             </p>
           </article>
         </div>
@@ -292,6 +328,10 @@
           <a class="link-card" href="palette-engine.md">
             <span class="link-title">PaletteEngine Guide</span>
             <span class="link-copy">Short usage notes, sample value lists, and output structure for PaletteEngine.</span>
+          </a>
+          <a class="link-card" href="revit-planning.md">
+            <span class="link-title">Revit Planning Notes</span>
+            <span class="link-copy">Current Rhino.Inside.Revit packaging notes, risks, and likely upgrade path.</span>
           </a>
           <a class="link-card" href="https://github.com/shapediver/GrasshopperPluginTemplate">
             <span class="link-title">ShapeDiver Plugin Template</span>

@@ -76,19 +76,14 @@ namespace MutaliskGH.Components.Revit
                 return;
             }
 
-            dataAccess.SetData(0, Wrap(result.Value.Reference));
-            dataAccess.SetData(1, Wrap(result.Value.ReferenceParent));
+            dataAccess.SetData(0, RevitGrasshopperWrapper.WrapElement(result.Value.Reference));
+            dataAccess.SetData(1, RevitGrasshopperWrapper.WrapElement(result.Value.ReferenceParent));
             if (result.Value.ParentElementId.HasValue)
             {
                 dataAccess.SetData(2, result.Value.ParentElementId.Value);
             }
 
             dataAccess.SetData(3, result.Value.CategoryName);
-        }
-
-        private static GH_ObjectWrapper Wrap(object value)
-        {
-            return value == null ? null : new GH_ObjectWrapper(value);
         }
     }
 }
